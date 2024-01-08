@@ -12,7 +12,8 @@ const ResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const url = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/barcodes/qrcode/?url=http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/person/personaldetails/";
+  //const url = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/barcodes/qrcode/?url=http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/person/personaldetails/";
+  const url = "http://localhost:8080/barcodes/qrcode/?url=http://localhost:8080/person/personaldetails/";
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
