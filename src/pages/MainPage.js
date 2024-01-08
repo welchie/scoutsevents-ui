@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import * as React from 'react';
 import dayjs from 'dayjs';
 import ResultsPage from "./ResultsPage";
-import qrcode from "./qrcode";
 
 
 const MainPage = () =>
@@ -33,7 +32,6 @@ const MainPage = () =>
             //var baseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com";
             var baseUrl = "http://localhost:8080";
 
-            http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/person/find?firstName=Chris&lastName=Welch&dob=30%2F03%2F1973
             var url = baseUrl + "/person/find?firstName=" + firstName + "&lastName=" + lastName + "&dob=" + convertDob;
             //alert(url);
             const response = await axios.get(url,{headers});
@@ -80,7 +78,6 @@ const clear = async() => {
     return (
         <div id="page-body" >
             <>
-            <qrcode/>
             <h3>Search</h3>
             {error && <p className="error">{error}</p>}
 
