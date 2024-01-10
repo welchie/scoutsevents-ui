@@ -8,6 +8,15 @@ import logo from '../images/logo_purple.png';
 const HeaderPage = () => {
     const {user} = useUser();
     const navigate = useNavigate();
+
+    const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
+
+    const API_URL =
+        NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
+
+    const API_HEADERS =
+        NODE_ENV === 'production' ? process.env.REACT_APP_API_HEADERS: window.API_URL ;
+
     return (
         <nav>
             <div className="main-body">
@@ -20,6 +29,7 @@ const HeaderPage = () => {
                         <td>{user ? 'Current user:' + user.email : ''}</td>
                         <td>
                         <a href="https://www.pentlandscouts.org.uk/sections/scouts_1" target="_blank" style={{ color: 'purple' }}>Web site</a></td>
+                        <td><font style={{color:'red'}}>API URL: {API_URL}</font></td>
                     </tr>
 
                 </table>
