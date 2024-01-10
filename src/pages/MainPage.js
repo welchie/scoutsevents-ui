@@ -9,6 +9,7 @@ import ResultsPage from "./ResultsPage";
 import { useState } from "react";
 import axios from 'axios';
 import dayjs from 'dayjs';
+import MenuPage from "./MenuPage";
 
 const MainPage = () =>
 {
@@ -66,39 +67,48 @@ const MainPage = () =>
     }
 
     return (
-        <div id="page-body" >
-            <>
+
+
+        <div id="page-body">
+
+
+            <></>
+
             <h3>Search</h3>
             {error && <p className="error">{error}</p>}
 
-            <Box component="form" sx={{ '& > :not(style)': { m: 1, width: '25ch' },}}
-                noValidate autoComplete="off" >
-            <TextField id="outlined-controlled" label="First Name" value={firstName} defaultValue={''}
-                onChange={(event) => {setFirstName(event.target.value);}}/>
+            <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
+                 noValidate autoComplete="off">
+                <TextField id="outlined-controlled" label="First Name" value={firstName} defaultValue={''}
+                           onChange={(event) => {
+                               setFirstName(event.target.value);
+                           }}/>
 
-            <TextField id="outlined-controlled" label="Last Name" value={lastName} defaultValue={''}
-                onChange={(event) => {setLastName(event.target.value);}}/>
-            <br></br>
+                <TextField id="outlined-controlled" label="Last Name" value={lastName} defaultValue={''}
+                           onChange={(event) => {
+                               setLastName(event.target.value);
+                           }}/>
+                <br></br>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs} >
-                <DateTimePicker label="Date of Birth" ampm={false} value={dob} format="DD/MM/YYYY"
-                    onChange={(newValue) => setDob(newValue)} />
-            </LocalizationProvider>
-           
-            <br></br>
-            <Button variant="contained" onClick={search} class="input-button"
-                    style={{width:100,height:50}}>Search
-            </Button>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateTimePicker label="Date of Birth" ampm={false} value={dob} format="DD/MM/YYYY"
+                                    onChange={(newValue) => setDob(newValue)}/>
+                </LocalizationProvider>
 
-            <Button variant="contained" onClick={findAll}
-                class="input-button" style={{width:100,height:50}}>Find All</Button>
+                <br></br>
+                <Button variant="contained" onClick={search} class="input-button"
+                        style={{width: 100, height: 50}}>Search
+                </Button>
 
-            <Button variant="contained" onClick={clear}
-                           class="input-button" style={{width:100,height:50}}>Clear</Button>
-           </Box>
-           {results ? (<ResultsPage rows={results.Person}/>  ): null}
-           </>
-        </div>   
+                <Button variant="contained" onClick={findAll}
+                        class="input-button" style={{width: 100, height: 50}}>Find All</Button>
+
+                <Button variant="contained" onClick={clear}
+                        class="input-button" style={{width: 100, height: 50}}>Clear</Button>
+            </Box>
+            {results ? (<ResultsPage rows={results.Person}/>) : null}
+
+        </div>
     )
 };
 

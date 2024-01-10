@@ -3,6 +3,8 @@ import useUser from '../hooks/useUser';
 import {getAuth, signOut} from 'firebase/auth';
 import Button from '@mui/material/Button';
 import logo from '../images/logo_purple.png';
+import MenuPage from "./MenuPage";
+import * as React from "react";
 
 
 const HeaderPage = () => {
@@ -20,28 +22,37 @@ const HeaderPage = () => {
     return (
         <nav>
             <div className="main-body">
-
                 <table>
                     <tr>
                         <td><img src={logo} alt="Logo" width="40"/></td>
-                        <td><h2 style={{ color: 'purple' }}>Pentland Scouts Events System</h2></td>
+                        <td><h2 style={{color: 'purple'}}>Pentland Scouts Events System</h2></td>
                         <td></td>
                         <td>{user ? 'Current user:' + user.email : ''}</td>
                         <td>
-                        <a href="https://www.pentlandscouts.org.uk/sections/scouts_1" target="_blank" style={{ color: 'purple' }}>Web site</a></td>
-                        <td><font style={{color:'red'}}>API URL: {API_URL}</font></td>
+                            <a href="https://www.pentlandscouts.org.uk/sections/scouts_1" target="_blank"
+                               style={{color: 'purple'}}>Web site</a></td>
+                        <td><font style={{color: 'red'}}>API URL: {API_URL}</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id=".nav_left">
+                                <></>
+                                <MenuPage/>
+                            </div>
+                        </td>
+
                     </tr>
 
                 </table>
-                
-                 
+
+
             </div>
 
-           <div className="nav-left">
+            <div className="nav-left">
                 {
 
                 }
-           </div>
+            </div>
             <div className="nav-right">
                 { user 
                     ? <Button variant="contained" class="input-button"  style={{width:100, height:50}} onClick={() => {

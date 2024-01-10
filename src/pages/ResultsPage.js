@@ -12,8 +12,18 @@ const ResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const baseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com:8000";
-  const url = baseUrl + "/barcodes/qrcode/?url=" + baseUrl + "/person/personaldetails/";
+  //const baseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com:8000";
+  //const url = baseUrl + "/barcodes/qrcode/?url=" + baseUrl + "/person/personaldetails/";
+
+  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
+
+
+  const API_URL =
+      NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
+
+  const QRCODE_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+  var url = API_URL +  "/barcodes/qrcode/?url=" + QRCODE_BASE_URL + "/person/personaldetails/";
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -24,8 +34,8 @@ const ResultsPage = ({rows}) => {
   };
 
   const handleChangeRow = (uid) => {
-      url = url + uid;
-      alert(url);
+      url = url = uid;
+      alert();
     };
 
     return (  
