@@ -20,7 +20,7 @@ const CreateAccountPage = () =>
             }
 
             await createUserWithEmailAndPassword(getAuth(),email,password);
-            navigate('/main');
+            navigate('/Events');
         }
         catch (e)
         {

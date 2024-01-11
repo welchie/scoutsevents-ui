@@ -10,14 +10,19 @@ import { useState } from "react";
 import axios from 'axios';
 import dayjs from 'dayjs';
 import MenuPage from "./MenuPage";
+import useUser from '../hooks/useUser';
+import LoginPage from "./LoginPage";
 
-const MainPage = () =>
+const PeoplePage = () =>
 {
     const [results,setResults] = useState('');
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
     const [dob,setDob] = useState('');
     const [error, setError] = useState('');
+
+    const {user} = useUser();
+    const tab = "/People"
 
     const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
 
@@ -67,49 +72,53 @@ const MainPage = () =>
     }
 
     return (
+        <>
+        {user ?
+        (
 
+            <div id="page-body">
+                <></>
 
-        <div id="page-body">
+                <h3>Search</h3>
+                {error && <p className="error">{error}</p>}
 
+                <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
+                     noValidate autoComplete="off">
+                    <TextField id="outlined-controlled" label="First Name" value={firstName} defaultValue={''}
+                               onChange={(event) => {
+                                   setFirstName(event.target.value);
+                               }}/>
 
-            <></>
+                    <TextField id="outlined-controlled" label="Last Name" value={lastName} defaultValue={''}
+                               onChange={(event) => {
+                                   setLastName(event.target.value);
+                               }}/>
+                    <br></br>
 
-            <h3>Search</h3>
-            {error && <p className="error">{error}</p>}
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DateTimePicker label="Date of Birth" ampm={false} value={dob} format="DD/MM/YYYY"
+                                        onChange={(newValue) => setDob(newValue)}/>
+                    </LocalizationProvider>
 
-            <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
-                 noValidate autoComplete="off">
-                <TextField id="outlined-controlled" label="First Name" value={firstName} defaultValue={''}
-                           onChange={(event) => {
-                               setFirstName(event.target.value);
-                           }}/>
+                    <br></br>
+                    <Button variant="contained" onClick={search} class="input-button"
+                            style={{width: 100, height: 50}}>Search
+                    </Button>
 
-                <TextField id="outlined-controlled" label="Last Name" value={lastName} defaultValue={''}
-                           onChange={(event) => {
-                               setLastName(event.target.value);
-                           }}/>
-                <br></br>
+                    <Button variant="contained" onClick={findAll}
+                            class="input-button" style={{width: 100, height: 50}}>Find All</Button>
 
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker label="Date of Birth" ampm={false} value={dob} format="DD/MM/YYYY"
-                                    onChange={(newValue) => setDob(newValue)}/>
-                </LocalizationProvider>
+                    <Button variant="contained" onClick={clear}
+                            class="input-button" style={{width: 100, height: 50}}>Clear</Button>
+                </Box>
+                {results ? (<ResultsPage rows={results.Person}/>) : null}
 
-                <br></br>
-                <Button variant="contained" onClick={search} class="input-button"
-                        style={{width: 100, height: 50}}>Search
-                </Button>
-
-                <Button variant="contained" onClick={findAll}
-                        class="input-button" style={{width: 100, height: 50}}>Find All</Button>
-
-                <Button variant="contained" onClick={clear}
-                        class="input-button" style={{width: 100, height: 50}}>Clear</Button>
-            </Box>
-            {results ? (<ResultsPage rows={results.Person}/>) : null}
-
-        </div>
+            </div>
+           )
+           : <LoginPage tab={tab}/>
+           }
+           </>
     )
 };
 
-export default MainPage;
+export default PeoplePage;
