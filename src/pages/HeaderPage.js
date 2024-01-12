@@ -22,8 +22,7 @@ const HeaderPage = () => {
         NODE_ENV === 'production' ? process.env.REACT_APP_API_HEADERS: window.API_URL ;
 
     return (
-        <>
-                                <NavBar links={linksArray}/>
+        <><NavBar links={linksArray}/>
        </>
     )
 }

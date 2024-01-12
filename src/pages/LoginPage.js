@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import Button from '@mui/material/Button';
+import NavBar  from "./NavBar";
+import navBar from "./NavBar";
 
 const LoginPage = ({tab}) =>
 {
@@ -14,7 +16,7 @@ const LoginPage = ({tab}) =>
     const logIn = async() => {
         try{
             await signInWithEmailAndPassword(getAuth(),email,password);
-            navigate(tab);
+            navigate("/Events");
         }
         catch (e) {
             setError(e.message);

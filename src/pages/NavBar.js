@@ -28,7 +28,6 @@ const NavBar = ({links}) => {
         const [value,setValue] =  React.useState(0);
         const {user} = useUser();
 
-
         const handleChange = (event, tab) => {
             setValue(tab);
         };
@@ -60,7 +59,6 @@ const NavBar = ({links}) => {
                                 {links.map((index) => (
                                   <Tab label={index}
                                    onClick={(() => {
-
                                                    navigate("/" + index);
                                                   })}/>
                                  ))}
