@@ -20,7 +20,7 @@ const CreateAccountPage = () =>
             }
 
             await createUserWithEmailAndPassword(getAuth(),email,password);
-            navigate('/main');
+            navigate('/Events');
         }
         catch (e)
         {
@@ -46,7 +46,7 @@ const CreateAccountPage = () =>
             placeholder="Re-enter password"
             value={confirmPassword}
             onChange={(e => setConfirmPassword(e.target.value))}/>
-        <Button variant="contained" onClick={createAccount}>Create Account</Button>
+        <Button variant="contained" class="input-button" style={{width:150,height:50}} onClick={createAccount}>Create Account</Button>
         <Link to="/login">Already Have an account? Login in here</Link>
         </>
         

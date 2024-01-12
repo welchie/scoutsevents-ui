@@ -8,6 +8,12 @@ import reportWebVitals from './reportWebVitals';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
+
+
+console.log('API_BASE_URL', process.env.REACT_APP_API_BASE_URL);
+console.log('API_HEADERS', process.env.REACT_APP_API_HEADERS);
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

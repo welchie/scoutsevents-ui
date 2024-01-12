@@ -2,7 +2,10 @@ import logo from './images/logo_purple.png';
 import './App.css';
 import HeaderPage from './pages/HeaderPage';
 import LoginPage from './pages/LoginPage';
-import MainPage from './pages/MainPage';
+import PeoplePage from './pages/PeoplePage';
+import EventsPage from './pages/EventsPage';
+import ActivitiesPage from './pages/ActivitiesPage';
+import AdminPage from './pages/AdminPage';
 import CreateAccountPage from './pages/CreateAccountPage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
@@ -15,7 +18,10 @@ function App() {
 
             <Routes>
              <Route path="/login" element={<LoginPage/>} />
-             <Route path="/main" element = {<MainPage />} />
+             <Route path="/Events" element={<EventsPage/>} />
+             <Route path="/Activities" element={<ActivitiesPage/>} />
+             <Route path="/Admin" element={<AdminPage/>} />
+             <Route path="/People" element = {<PeoplePage />} />
              <Route path="/create-account" element= {<CreateAccountPage/>}/>
              <Route path="*" element={<LoginPage/>}/>
              </Routes>
