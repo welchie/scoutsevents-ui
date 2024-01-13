@@ -7,16 +7,24 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
+import Button from '@mui/material/Button';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import { styled } from '@mui/system';
+import PersonDetailPage from './PersonDetailPage';
+import axios from 'axios';
 
-const ResultsPage = ({rows}) => {
+const PeopleResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [anchor, setAnchor] = React.useState(null);
+  const open = Boolean(anchor);
+  const id = open ? 'simple-popup' : undefined;
 
-  //const baseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com:8000";
-  //const url = baseUrl + "/barcodes/qrcode/?url=" + baseUrl + "/person/personaldetails/";
+  const [error,setError] = React.useState('');
+
+  const [currentRow,setCurrentRow] = React.useState(null);
 
   const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
-
 
   const API_URL =
       NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
@@ -32,15 +40,11 @@ const ResultsPage = ({rows}) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  const handleChangeRow = (uid) => {
-      url = url = uid;
-      alert();
+    const handleClick = (event) => {
+        setAnchor(anchor ? null : event.currentTarget);
     };
 
-    return (  
-      
-
+    return (
 <Paper sx={{ width: '100%' }} style={{width:1000}}>
     <TableContainer component={Paper} style={{width:1000}}>
     <Table size="small" tickyHeader aria-label="sticky table">
@@ -54,20 +58,16 @@ const ResultsPage = ({rows}) => {
           <TableCell align="left">Section Name</TableCell>
           <TableCell align="left">Scout Group</TableCell>
           <TableCell align="left">Position</TableCell>
-          <TableCell style={{width:200}}>ID</TableCell>
-           <TableCell align="left">QR Code</TableCell>
+
+          <TableCell align="left">QR Code</TableCell>
+          <TableCell align="left">Details</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
       {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-          <TableRow
-            key={row.name}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-
-          >
-
+          <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
             <TableCell align="left">{row.firstName}</TableCell>
             <TableCell align="left">{row.lastName}</TableCell>
             <TableCell align="left">{row.dob}</TableCell>
@@ -75,8 +75,21 @@ const ResultsPage = ({rows}) => {
             <TableCell align="left">{row.sectionName}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
             <TableCell align="left">{row.position}</TableCell>
-            <TableCell align="left">{row.uid}</TableCell>
-            <TableCell align="left"><img src={url+ row.uid} alt="qrcode"/></TableCell>
+
+            <TableCell align="left"><img src={url+ row.uid} alt="qrcode" width="150" height="150"/></TableCell>
+            <TableCell align="left">
+                <Button variant="contained" onClick={handleClick}  class="input-button" style={{width: 100, height: 50}}>Detail</Button>
+            </TableCell>
+
+            <BasePopup id={id} open={open} anchor={anchor}>
+                <PopupBody>
+                    <>
+                        <PersonDetailPage person={row}/>
+                        <Button variant="contained" onClick={handleClick}  class="input-button" style={{width: 100, height: 50}}>Close</Button>
+
+                    </>
+                </PopupBody>
+            </BasePopup>
 
           </TableRow>
         ))}
@@ -99,5 +112,46 @@ const ResultsPage = ({rows}) => {
     )
 }
 
+const blue = {
+    200: '#99CCFF',
+    300: '#66B2FF',
+    400: '#3399FF',
+    500: '#007FFF',
+    600: '#0072E5',
+    700: '#0066CC',
+};
 
-export default ResultsPage;
+const grey = {
+    50: '#F3F6F9',
+    100: '#E5EAF2',
+    200: '#DAE2ED',
+    300: '#C7D0DD',
+    400: '#B0B8C4',
+    500: '#9DA8B7',
+    600: '#6B7A90',
+    700: '#434D5B',
+    800: '#303740',
+    900: '#1C2025',
+};
+
+const PopupBody = styled('div')(
+    ({ theme }) => `
+  width: max-content;
+  padding: 12px 16px;
+  margin: 8px;
+  border-radius: 8px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  box-shadow: ${
+        theme.palette.mode === 'dark'
+            ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+            : `0px 4px 8px rgb(0 0 0 / 0.1)`
+    };
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  z-index: 1;
+`,
+    );
+
+export default PeopleResultsPage;
