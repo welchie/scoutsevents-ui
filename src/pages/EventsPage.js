@@ -17,19 +17,7 @@ import EventCreate from './EventCreate';
 const EventsPage = () =>
 {
 
-    /**
-     * {
-     *     "uid": "adbfb155-018c-1000-81c1-e664b2b44fdf",
-     *     "sortKey": "Brass Monkey Camp 2024Bonaly",
-     *     "name": "Brass Monkey Camp 2024",
-     *     "venue": "Bonaly",
-     *     "startDate": "03/02/2024",
-     *     "endDate": "04/02/2024",
-     *     "attendanceLimit": 200,
-     *     "emergencyContactNo": "+(44)7515744945",
-     *     "emergencyContactName": "Ross Nicoll"
-     *   }
-     */
+
     const [results,setResults] = useState('');
     const [eventName,setEventName] = useState('');
     const [venue,setVenue] = useState('');
@@ -66,10 +54,6 @@ const EventsPage = () =>
             var url = API_URL + "/event/all";
             const response = await axios.get(url,{API_HEADERS});
 
-
-            //var url = API_URL + "/event/find?name=" + eventName + "&venue=" + venue;
-            //const response = await axios.get(url,{API_HEADERS});
-
             setResults(response.data);
         }
         catch (e) {
@@ -81,8 +65,6 @@ const EventsPage = () =>
         try{
             setError('');
             setResults(null);
-
-            http://localhost:8080/event/find?name=Brass%20Monkey%20Camp%202024&venue=Bonaly
 
             var url = API_URL + "/event/find?name=" + eventName + "&venue=" + venue;
             const response = await axios.get(url,{API_HEADERS});

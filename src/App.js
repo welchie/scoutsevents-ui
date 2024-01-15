@@ -7,6 +7,7 @@ import EventsPage from './pages/EventsPage';
 import ActivitiesPage from './pages/ActivitiesPage';
 import AdminPage from './pages/AdminPage';
 import CreateAccountPage from './pages/CreateAccountPage';
+import PersonPage from './pages/PersonPage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
              <Route path="/People" element = {<PeoplePage />} />
              <Route path="/create-account" element= {<CreateAccountPage/>}/>
              <Route path="*" element={<LoginPage/>}/>
+             <Route path="/Person/:uid" element={<PersonPage />}/>
              </Routes>
             </div>
 

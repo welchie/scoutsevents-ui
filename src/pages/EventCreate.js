@@ -121,10 +121,6 @@ export default function SimplePopup() {
     <br/>
     <Button variant="contained" onClick={createEvent}
     class="input-button" style={{width: 100, height: 50}}>Add</Button>
-
-
-
-
     </Box>
 );
 }

@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import * as React from 'react';
-import ResultsPage from "./ResultsPage";
+import PeopleResultsPage from "./PeopleResultsPage";
 import { useState } from "react";
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -111,7 +111,7 @@ const PeoplePage = () =>
                     <Button variant="contained" onClick={clear}
                             class="input-button" style={{width: 100, height: 50}}>Clear</Button>
                 </Box>
-                {results ? (<ResultsPage rows={results.Person}/>) : null}
+                {results ? (<PeopleResultsPage rows={results.Person}/>) : null}
 
             </div>
            )
