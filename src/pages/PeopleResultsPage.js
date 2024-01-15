@@ -24,14 +24,14 @@ const PeopleResultsPage = ({rows}) => {
 
   const [currentRow,setCurrentRow] = React.useState(null);
 
-  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
+  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_URL } = process.env;
 
   const API_URL =
       NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
 
   const QRCODE_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-  var url = API_URL +  "/barcodes/qrcode/?url=" + QRCODE_BASE_URL + "/person/personaldetails/";
+  var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -60,7 +60,6 @@ const PeopleResultsPage = ({rows}) => {
           <TableCell align="left">Position</TableCell>
 
           <TableCell align="left">QR Code</TableCell>
-          <TableCell align="left">Details</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -77,19 +76,6 @@ const PeopleResultsPage = ({rows}) => {
             <TableCell align="left">{row.position}</TableCell>
 
             <TableCell align="left"><img src={url+ row.uid} alt="qrcode" width="150" height="150"/></TableCell>
-            <TableCell align="left">
-                <Button variant="contained" onClick={handleClick}  class="input-button" style={{width: 100, height: 50}}>Detail</Button>
-            </TableCell>
-
-            <BasePopup id={id} open={open} anchor={anchor}>
-                <PopupBody>
-                    <>
-                        <PersonDetailPage person={row}/>
-                        <Button variant="contained" onClick={handleClick}  class="input-button" style={{width: 100, height: 50}}>Close</Button>
-
-                    </>
-                </PopupBody>
-            </BasePopup>
 
           </TableRow>
         ))}
