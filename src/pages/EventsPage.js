@@ -139,7 +139,7 @@ const EventsPage = () =>
         (
             <div id="page-body">
                 <></>
-                <h3>Search</h3>
+                <h3>Events</h3>
                 {error && <p className="error">{error}</p>}
 
                 <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}

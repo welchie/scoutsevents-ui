@@ -21,15 +21,20 @@ const PeopleResultsPage = ({rows}) => {
   const id = open ? 'simple-popup' : undefined;
 
   const [error,setError] = React.useState('');
+  const [devMode,setDevMode] = React.useState(null);
 
   const [currentRow,setCurrentRow] = React.useState(null);
 
-  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_URL } = process.env;
+  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_URL , REACT_APP_MODE} = process.env;
 
   const API_URL =
       NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
 
   const QRCODE_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+  const DEV_MODE =  process.env.REACT_APP_MODE;
+
+
 
   var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
   const handleChangePage = (event, newPage) => {
@@ -46,6 +51,9 @@ const PeopleResultsPage = ({rows}) => {
 
     return (
 <Paper sx={{ width: '100%' }} style={{width:1000}}>
+
+
+    {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
     <TableContainer component={Paper} style={{width:1000}}>
     <Table size="small" tickyHeader aria-label="sticky table">
       <TableHead>
@@ -53,13 +61,13 @@ const PeopleResultsPage = ({rows}) => {
 
           <TableCell align="left">First Name</TableCell>
           <TableCell align="left">Last Name</TableCell>
-          <TableCell align="left">Date of Birth</TableCell>
-          <TableCell align="left">Scout Section</TableCell>
-          <TableCell align="left">Section Name</TableCell>
-          <TableCell align="left">Scout Group</TableCell>
+          <TableCell align="left">Age</TableCell>
+          <TableCell align="left">Section</TableCell>
+          <TableCell align="left">Group</TableCell>
           <TableCell align="left">Position</TableCell>
-
           <TableCell align="left">QR Code</TableCell>
+          {DEV_MODE === 'dev' ? <TableCell align="left">UID</TableCell> : <br/>}
+
         </TableRow>
       </TableHead>
       <TableBody>
@@ -71,12 +79,10 @@ const PeopleResultsPage = ({rows}) => {
             <TableCell align="left">{row.lastName}</TableCell>
             <TableCell align="left">{row.dob}</TableCell>
             <TableCell align="left">{row.scoutSection}</TableCell>
-            <TableCell align="left">{row.sectionName}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
             <TableCell align="left">{row.position}</TableCell>
-
             <TableCell align="left"><img src={url+ row.uid} alt="qrcode" width="150" height="150"/></TableCell>
-
+            {DEV_MODE === 'dev' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
           </TableRow>
         ))}
       </TableBody>

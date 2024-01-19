@@ -12,7 +12,7 @@ const HeaderPage = () => {
     const {user} = useUser();
     const navigate = useNavigate();
 
-    const linksArray = ["Events","People","Activities", "Admin"];
+    const linksArray = ["Events","People","Admin"];
     const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
 
     const API_URL =
