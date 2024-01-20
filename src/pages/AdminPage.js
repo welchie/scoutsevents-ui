@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuList from '@mui/material/MenuList';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import TextField from '@mui/material/TextField';
 
 
 
@@ -33,18 +35,28 @@ const AdminPage = () =>
   const [fileName, setFileName] = React.useState(null);
   const [results,setResults] = useState('');
   const [error, setError] = useState('');
-  const [event, setEvent] = React.useState('');
+  const [eventId, setEventId] = React.useState('');
 
-  const handleChange = (newValue) => {
-             setFileName(newValue)
+ const handleChange = (newValue) => {
+            alert(newValue);
+            setFileName(newValue);
+             findAll();
            }
+
   const handleMenuSelect = (menuItem) => {
             const value =  menuItem.target.value;
-               setEvent(value);
+               setEventId(value);
              }
+const handleFileSelect = (fileItem) => {
+              const value =  fileItem.target.value;
+              setFileName(value);
+              findAll();
+ };
 
  const uploadFile = async()=> {
-        alert('Uploading file: ' + fileName.name + " Event:" + event);
+        alert('Uploading file: ' + fileName +   " Event:" + eventId);
+
+        //http://localhost:8080/admin/person/import/people?fileName= ****** &eventUid= ******
 
  };
 
@@ -55,16 +67,12 @@ const AdminPage = () =>
 
             var url = API_URL + "/event/all";
             const response = await axios.get(url,{API_HEADERS});
-
             setResults(response.data);
-
-
         }
         catch (e) {
             setError(e.message);
         }
     };
-
 
     return (
         <>
@@ -74,19 +82,17 @@ const AdminPage = () =>
         <h1>Admin Page</h1>
 
         <h2>Import Personal Details from Excel File</h2>
-        <Box component="form" sx={{'& > :not(style)': {m: 1, width: '20ch'},} }
+        <Box component="form" sx={{'& > :not(style)': {m: 2, width: '20ch'},} }
              noValidate autoComplete="off"
              >
-             <h4>Select file</h4>
-             <MuiFileInput value={fileName} onChange={handleChange} onClick={findAll} style={{width:300}} />
-             <br/>
-             <b>Event</b>
+
+        <TextField id="fileName" type="file" onChange={handleFileSelect} style={{width:300}}/>
         {results ?
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
 
-          value={event}
+          value={eventId}
           label="Event"
           onChange={handleMenuSelect}
 
@@ -109,13 +115,6 @@ const AdminPage = () =>
              <Button variant="contained" onClick={uploadFile} class="input-button" style={{width: 100, height: 50}}>Upload</Button>
 
         </Box>
-
-
-
-
-
-
-
 
         </>
         )
