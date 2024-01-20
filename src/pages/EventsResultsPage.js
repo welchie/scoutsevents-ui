@@ -65,6 +65,7 @@ return (
           <TableCell align="left">Attendance Limit</TableCell>
           <TableCell align="left">Emergency Contact No</TableCell>
           <TableCell align="left">Emergency Contact</TableCell>
+          <TableCell align="left">UID</TableCell>
 
         </TableRow>
       </TableHead>
@@ -89,6 +90,7 @@ return (
             <TableCell align="left">{row.attendanceLimit}</TableCell>
             <TableCell align="left">{row.emergencyContactNo}</TableCell>
             <TableCell align="left">{row.emergencyContactName}</TableCell>
+            <TableCell align="left">{row.uid}</TableCell>
 
 
           </TableRow>
