@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import EventAttendeesResultsPage from "./EventAttendeesResultsPage";
 
 import TextField from '@mui/material/TextField';
 
@@ -26,6 +27,7 @@ const AdminPage = () =>
 
   const [fileName, setFileName] = React.useState(null);
   const [results,setResults] = useState('');
+  const [eventAttendees,setEventAttendees] = useState('');
   const [error, setError] = useState('');
   const [eventId, setEventId] = React.useState('');
 
@@ -41,10 +43,20 @@ const handleFileSelect = (fileItem) => {
  };
 
  const uploadFile = async()=> {
-        alert('Uploading file: ' + fileName +   " Event:" + eventId);
+    try{
+        setError('');
+        setResults(null);
 
-        //http://localhost:8080/admin/person/import/people?fileName= ****** &eventUid= ******
-
+        //C:\fakepath\people_import.xlsx
+        const file = "/Users/chris.welch/workspace/personal/scoutsevents/src/test/resources/people_import.xlsx";
+        //alert('Uploading file: ' + file +   " Event:" + eventId);
+        var url = API_URL + "/admin/person/import/people?fileName=" + file + "&eventUid=" + eventId;
+        const response = await axios.get(url,{API_HEADERS});
+        setEventAttendees(response.data);
+    }
+    catch (e) {
+        setError(e.message);
+    }
  };
 
  const findAll = async() => {
@@ -88,6 +100,7 @@ const handleFileSelect = (fileItem) => {
             <br/>
             <Button variant="contained" onClick={uploadFile} class="input-button" style={{width: 100, height: 50}}>Upload</Button>
         </Box>
+        {eventAttendees ? (<EventAttendeesResultsPage rows={eventAttendees.EventAttendees}/>) : null}
 
         </>
         )

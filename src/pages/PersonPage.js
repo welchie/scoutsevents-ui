@@ -26,7 +26,7 @@ const PersonPage = () =>
  const tab = "/Person";
 
 
- const [person, setPerson] = useState('');
+ const [person, setPerson] = useState(null);
  var [errorMessage, setErrorMessage] = useState('');
 
  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
@@ -39,11 +39,13 @@ const PersonPage = () =>
 
  const getPersonDetails = async() => {
         try{
-
-            var url = API_URL + "/person/find/" + uid ;
-            const response = await axios.get(url,{REACT_APP_API_HEADERS});
-            setPerson(response.data.Person[0]);
-            setErrorMessage('');
+            if (person === null)
+            {
+                var url = API_URL + "/person/find/" + uid ;
+                const response = await axios.get(url,{REACT_APP_API_HEADERS});
+                setPerson(response.data.Person[0]);
+                setErrorMessage('');
+             }
         }
         catch (e) {
             setErrorMessage(e.message);

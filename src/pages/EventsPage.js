@@ -16,14 +16,10 @@ import EventCreate from './EventCreate';
 
 const EventsPage = () =>
 {
-
-
     const [results,setResults] = useState('');
     const [eventName,setEventName] = useState('');
     const [venue,setVenue] = useState('');
     const [error, setError] = useState('');
-
-
     const [anchor, setAnchor] = React.useState(null);
 
     const handleClick = (event) => {
@@ -32,8 +28,6 @@ const EventsPage = () =>
 
     const open = Boolean(anchor);
     const id = open ? 'simple-popup' : undefined;
-
-
 
     const {user} = useUser();
     const tab = "/Events";
@@ -140,52 +134,47 @@ const EventsPage = () =>
             <div id="page-body">
                 <></>
                 <h3>Events</h3>
-                {error && <p className="error">{error}</p>}
+                {error && <p className="error">{error}></p>}
 
                 <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
                     noValidate autoComplete="off">
                     <TextField id="outlined-controlled" label="Event Name" value={eventName} defaultValue={''}
                         onChange={(event) => {
-                            setEventName(event.target.value);
+                        setEventName(event.target.value);
                     }}/>
 
                     <TextField id="outlined-controlled" label="Venue" value={venue} defaultValue={''}
                         onChange={(event) => {
                         setVenue(event.target.value);
                     }}/>
-                    <br></br>
+
+                    <br/>
                     <Button variant="cont<ained" onClick={search} class="input-button"
                         style={{width: 100, height: 50}}>Search </Button>
 
                     <Button variant="contained" onClick={findAll}
                         class="input-button" style={{width: 100, height: 50}}>Find All</Button>
 
-<Button variant="contained" aria-describedby={id} onClick={handleClick} type="button" class="input-button"
-    style={{width: 100, height: 50}}>Create </Button>
-<BasePopup id={id} open={open} anchor={anchor}>
-    <PopupBody><EventCreate/></PopupBody>
-</BasePopup>
+                    <Button variant="contained" aria-describedby={id} onClick={handleClick} type="button" class="input-button"
+                        style={{width: 100, height: 50}}>Create </Button>
 
+                    <BasePopup id={id} open={open} anchor={anchor}>
+                        <PopupBody><EventCreate/></PopupBody>
+                    </BasePopup>
 
                     <Button variant="contained" onClick={clear}
                         class="input-button" style={{width: 100, height: 50}}>Clear</Button>
 
-
-
                 </Box>
+
                 {results ? (<EventsResultsPage rows={results.Event}/>) : null}
-
             </div>
-
         )
         :
-        <LoginPage tab={tab}/>
+            <LoginPage tab={tab}/>
         }
         </>
-
     );
-
-
 }
 
 export default EventsPage;
