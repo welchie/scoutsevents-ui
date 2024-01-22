@@ -26,7 +26,7 @@ const PersonPage = () =>
  const tab = "/Person";
 
 
- const [person, setPerson] = useState('');
+ const [person, setPerson] = useState(null);
  var [errorMessage, setErrorMessage] = useState('');
 
  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
@@ -39,11 +39,13 @@ const PersonPage = () =>
 
  const getPersonDetails = async() => {
         try{
-
-            var url = API_URL + "/person/find/" + uid ;
-            const response = await axios.get(url,{REACT_APP_API_HEADERS});
-            setPerson(response.data.Person[0]);
-            setErrorMessage('');
+            if (person === null)
+            {
+                var url = API_URL + "/person/find/" + uid ;
+                const response = await axios.get(url,{REACT_APP_API_HEADERS});
+                setPerson(response.data.Person[0]);
+                setErrorMessage('');
+             }
         }
         catch (e) {
             setErrorMessage(e.message);
@@ -62,13 +64,13 @@ const PersonPage = () =>
           <h3>Personal Details</h3>
           <br/>First Name: {person.firstName}
           <br/>Last Name: {person.lastName}
-          <br/>Date of Birth: {person.dob}
+          <br/>Age: {person.dob}
           <br/>Section: {person.scoutSection}
-          <br/>Section Name: {person.sectionName}
-          <br/>Scout Group: {person.scoutGroup}
+          <br/>Group: {person.scoutGroup}
           <br/>Position: {person.position}
           <br/>Medicine: {person.medicine}
           <br/>Allergies: {person.allergies}
+          <br/>Photo Permission: {person.photoPermission}
 
           <br/><h3>Contact Details</h3>
           <br/>Email: {person.contactEmail}
@@ -91,50 +93,5 @@ const PersonPage = () =>
    }
 
 
-//const PersonPage = () => {
-//  const { uid } = useParams();
-//  const [error, setError] = useState('');
-//
-//  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
-//
-//    const API_URL =
-//        NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
-//
-//      const API_HEADERS =
-//          NODE_ENV === 'production' ? process.env.REACT_APP_API_HEADERS: window.API_URL ;
-//
-//
-//  const getPersonDetails = async(uid) => {
-//        try{
-//            setError('');
-//
-//            var url = API_URL + "/person/find/" + uid;
-//            const response = await axios.get(url,{REACT_APP_API_HEADERS});
-//            //alert(response.data.Person[0].firstName);
-//            return(response.data.Person[0]);
-//        }
-//        catch (e) {
-//            setError(e.message);
-//        }
-//    };
-//
-//    const person = getPersonDetails(uid);
-//    const {user} = useUser();
-//     const tab = "/PersonPage";
-// return (
-//         <>
-//         {user ?
-//         (
-//         <>
-//         <h1>Activities Page</h1>
-//         </>
-//         )
-//         :
-//         <LoginPage tab={tab}/>
-//         }
-//         </>
-//
-//     );
-//  }
 
 export default PersonPage;

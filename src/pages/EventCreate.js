@@ -40,7 +40,7 @@ export default function SimplePopup() {
             //Validate data then post Event Create
             var convStartDate = dayjs(startDate).format('DD/MM/YYYY');
             var convEndDate = dayjs(endDate).format('DD/MM/YYYY');
-            alert(eventName + " " + venue + " " + emergencyContactNo + " " + emergencyContactName + " " + attendanceLimit + " " + convStartDate + " " + convEndDate);
+            //alert(eventName + " " + venue + " " + emergencyContactNo + " " + emergencyContactName + " " + attendanceLimit + " " + convStartDate + " " + convEndDate);
 
 
             var url = API_URL + "/event/create";
