@@ -7,14 +7,19 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import FormControlLabel from '@mui/material/FormControlLabel';
 
 const EventsResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_URL , REACT_APP_MODE} = process.env;
+
+    const API_URL =
+        NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
+
+    const QRCODE_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+    const DEV_MODE =  process.env.REACT_APP_MODE;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -27,6 +32,7 @@ const EventsResultsPage = ({rows}) => {
 
 return (
     <Paper sx={{ width: '100%' }} style={{width:1000}}>
+    {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
         <TableContainer component={Paper} style={{width:1000}}>
         <Table size="small" tickyHeader aria-label="sticky table">
           <TableHead>

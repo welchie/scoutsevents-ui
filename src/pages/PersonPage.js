@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import { useState } from "react";
 import useUser from '../hooks/useUser';
 import LoginPage from "./LoginPage";
+import Button from '@mui/material/Button';
 
 
 const PersonPage = () =>
@@ -54,6 +55,11 @@ const PersonPage = () =>
 
    getPersonDetails();
 
+   const checkin = () =>
+   {
+       alert("Checking in");
+   }
+
  return (
           <>
 
@@ -65,6 +71,7 @@ const PersonPage = () =>
           <br/>First Name: {person.firstName}
           <br/>Last Name: {person.lastName}
           <br/>Age: {person.dob}
+          <br/>Sub Camp: {person.subCamp}
           <br/>Section: {person.scoutSection}
           <br/>Group: {person.scoutGroup}
           <br/>Position: {person.position}
@@ -80,6 +87,8 @@ const PersonPage = () =>
 
           <br/>
 
+            <Button variant="contained" onClick={checkin}
+                class="input-button" style={{width: 100, height: 50}}>Check In</Button>
 
 
           </>

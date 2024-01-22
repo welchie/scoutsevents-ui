@@ -58,16 +58,15 @@ const PeopleResultsPage = ({rows}) => {
     <Table size="small" tickyHeader aria-label="sticky table">
       <TableHead>
         <TableRow>
-
-          <TableCell align="left">First Name</TableCell>
-          <TableCell align="left">Last Name</TableCell>
-          <TableCell align="left">Age</TableCell>
-          <TableCell align="left">Section</TableCell>
-          <TableCell align="left">Group</TableCell>
-          <TableCell align="left">Position</TableCell>
-          <TableCell align="left">QR Code</TableCell>
-          {DEV_MODE === 'dev' ? <TableCell align="left">UID</TableCell> : <br/>}
-
+            <TableCell align="left">First Name</TableCell>
+            <TableCell align="left">Last Name</TableCell>
+            <TableCell align="left">Age</TableCell>
+            <TableCell align="left">Sub Camp</TableCell>
+            <TableCell align="left">Section</TableCell>
+            <TableCell align="left">Group</TableCell>
+            <TableCell align="left">Position</TableCell>
+            <TableCell align="left">QR Code</TableCell>
+            {DEV_MODE === 'dev' ? <TableCell align="left">UID</TableCell> : <br/>}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -78,6 +77,7 @@ const PeopleResultsPage = ({rows}) => {
             <TableCell align="left">{row.firstName}</TableCell>
             <TableCell align="left">{row.lastName}</TableCell>
             <TableCell align="left">{row.dob}</TableCell>
+            <TableCell align="left" >{row.subCamp}</TableCell>
             <TableCell align="left">{row.scoutSection}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
             <TableCell align="left">{row.position}</TableCell>
