@@ -53,7 +53,6 @@ const NavBar = ({links}) => {
                                   textColor="secondary"
                                   indicatorColor="secondary"
                                   aria-label="secondary tabs example"
-
                                 >
 
                                 {links.map((index) => (
@@ -79,10 +78,7 @@ const NavBar = ({links}) => {
                     <p></p>
 
                 }
-                <Button class="input-button"  style={{width:100, height:50, marginLeft:1}} variant="contained"
-                onClick={(() => {
-                navigate('/create-account');
-               })}>SignUp</Button>
+
 
                                 </Box>
                             </Grid>

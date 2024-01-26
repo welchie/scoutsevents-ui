@@ -1,0 +1,168 @@
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import TablePagination from '@mui/material/TablePagination';
+import Button from '@mui/material/Button';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import { styled } from '@mui/system';
+import axios from 'axios';
+import bm24logo from '../images/BM2024.png';
+import scoutslogo from '../images/logo_purple.png';
+import LanyardFront from './LanyardFront';
+import green_blue_teal from '../images/green_blue_teal.png';
+import teal_banner from '../images/teal_banner.png';
+
+const LanyardResultsPage = ({rows}) => {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [anchor, setAnchor] = React.useState(null);
+  const open = Boolean(anchor);
+  const id = open ? 'simple-popup' : undefined;
+
+  const [error,setError] = React.useState('');
+  const [devMode,setDevMode] = React.useState(null);
+
+  const [currentRow,setCurrentRow] = React.useState(null);
+
+  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_URL , REACT_APP_MODE} = process.env;
+
+  const API_URL =
+      NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
+
+  const QRCODE_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+  const DEV_MODE =  process.env.REACT_APP_MODE;
+
+
+
+  var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+    const handleClick = (event) => {
+        setAnchor(anchor ? null : event.currentTarget);
+    };
+
+    return (
+<Paper sx={{ width: '100%' }} style={{width:1000}}>
+
+
+    {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
+    <TableContainer component={Paper} style={{width:1000}}>
+    <Table size="small" tickyHeader aria-label="sticky table">
+      <TableHead>
+        <TableRow>
+            <TableCell align="left">Lanyard Front</TableCell>
+            <TableCell align="left">Lanyard Back</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+      {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+          <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0, padding:"10px" } }} >
+            <TableCell align="left">
+                <>
+                <table style={{width:"300"}}>
+                    <tr>
+                        <td><img src={teal_banner} alt="banner" width="100" height="800"/></td>
+                        <td style={{width:"50%"}}>
+                            <h3><pre style={{padding:'0px', align:'left'}}>   {row.firstName}       </pre></h3>
+                            <h3><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h3>
+                            <h3><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h3>
+                            <h3><pre style={{padding:'0px'}}>   Sub Camp: {row.subCamp}     </pre></h3>
+                             <br/><img src={url+ row.uid} alt="qrcode" style={{align:'middle',padding:'90px'}} width="150" height="150"/>
+                             <br/><br/><br/><br/>
+                             <img src={scoutslogo} alt="Scouts Logo" width="50" height="50"/>  <img src={bm24logo} alt="BM2024" align="right" width="50" height="50"/>
+                        </td>
+
+                        <td style={{width:"40%"}}>
+                            <h2>TIMETABLE</h2>
+                            <img src={green_blue_teal} alt="green_blue_treal" width="150" height="20"/>
+                            <h3><u>Saturday</u></h3>
+                            <pre>12pm          Registration in the Barn
+                                <br/>              & setup in Druim Field</pre>
+                            <pre>2pm           Activities– Zone A</pre>
+                            <pre>3.30pm - 4pm  Break / snacks</pre>
+                            <pre>4pm           Activities– Zone B</pre>
+                            <pre>5.30pm        Dinner</pre>
+                            <pre>6.30pm        Campfire</pre>
+                            <pre>7.30pm        Meet in evening groups on Main Field</pre>
+                            <pre>10pm          Supper in Barn</pre>
+                            <pre>11pm          Lights out/ Noise Curfew</pre>
+                            <h3><u>Sunday</u></h3>
+                            <pre>7:30am         Wakey, wakey, rise & shine</pre>
+                            <pre>8am            Start packing up, cereal bars <br/>               & refreshments in Druim Field</pre>
+                            <pre>8:30am         Breakfast</pre>
+                            <pre>9:30am         All sub-camps to the Druim Field<br/>               (ready for activities)</pre>
+                            <pre>10am           Activity Groups > By Subcamp</pre>
+                            <pre>12pm           Activities finish - return to Main Field</pre>
+                            <pre>12:15pm        Prize Giving - Flagpole (Main Field)</pre>
+                            <pre>12:45pm        Safe journey home Pick Up <br/>               - West Carnethy Ave</pre>
+                         </td>
+                    </tr>
+
+
+
+                </table>
+                </>
+
+           </TableCell>
+
+            <TableCell align="left"></TableCell>
+            {DEV_MODE === 'dev' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+   <TablePagination
+   rowsPerPageOptions={[10, 25, 100]}
+   component="div"
+   count={rows.length}
+   rowsPerPage={rowsPerPage}
+   page={page}
+   onPageChange={handleChangePage}
+   onRowsPerPageChange={handleChangeRowsPerPage}
+   style={{width:1100}}
+ />
+
+ </Paper>
+
+    )
+}
+
+const blue = {
+    200: '#99CCFF',
+    300: '#66B2FF',
+    400: '#3399FF',
+    500: '#007FFF',
+    600: '#0072E5',
+    700: '#0066CC',
+};
+
+const grey = {
+    50: '#F3F6F9',
+    100: '#E5EAF2',
+    200: '#DAE2ED',
+    300: '#C7D0DD',
+    400: '#B0B8C4',
+    500: '#9DA8B7',
+    600: '#6B7A90',
+    700: '#434D5B',
+    800: '#303740',
+    900: '#1C2025',
+};
+
+
+export default LanyardResultsPage;
