@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import * as React from 'react';
-import PeopleResultsPage from "./PeopleResultsPage";
+import LanyardResultsPage from "./LanyardResultsPage";
 import { useState } from "react";
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -13,7 +13,8 @@ import MenuPage from "./MenuPage";
 import useUser from '../hooks/useUser';
 import LoginPage from "./LoginPage";
 
-const PeoplePage = () =>
+
+const LanyardsPage = () =>
 {
     const [results,setResults] = useState('');
     const [firstName,setFirstName] = useState('');
@@ -76,7 +77,7 @@ const PeoplePage = () =>
 
             <div id="page-body">
                 <></>
-                <h3>People</h3>
+                <h3>Lanyards</h3>
                 {error && <p className="error">{error}</p>}
 
                 <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
@@ -92,6 +93,7 @@ const PeoplePage = () =>
                                }}/>
                     <br></br>
 
+
                     <Button variant="contained" onClick={search} class="input-button"
                             style={{width: 100, height: 50}}>Search
                     </Button>
@@ -102,7 +104,7 @@ const PeoplePage = () =>
                     <Button variant="contained" onClick={clear}
                             class="input-button" style={{width: 100, height: 50}}>Clear</Button>
                 </Box>
-                {results ? (<PeopleResultsPage rows={results.Person}/>) : null}
+                {results ? (<LanyardResultsPage rows={results.Person}/>) : null}
 
             </div>
            )
@@ -112,4 +114,4 @@ const PeoplePage = () =>
     )
 };
 
-export default PeoplePage;
+export default LanyardsPage;

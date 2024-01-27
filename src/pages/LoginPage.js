@@ -39,7 +39,7 @@ const LoginPage = ({tab}) =>
             value={password}
             onChange={(e => setPassword(e.target.value))}/>
         <Button variant="contained" class="input-button"  style={{width:100, height:50}} onClick={logIn}>Log In</Button>
-        <Link to="/create-account">Don't Have an account? Create one here</Link>
+        {email === "welchie99@gmail.com" ? <><Link to="/create-account">Don't Have an account? Create one here</Link></> : null }
         </>
         
     );

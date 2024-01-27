@@ -8,6 +8,9 @@ import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import EventAttendeesResultsPage from "./EventAttendeesResultsPage";
+import ImportPeople from "./ImportPeople";
+
+import {useNavigate} from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 
@@ -15,6 +18,7 @@ const AdminPage = () =>
 {
 
  const {user} = useUser();
+ const navigate = useNavigate();
  const tab = "/Admin";
 
  const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
@@ -73,6 +77,19 @@ const handleFileSelect = (fileItem) => {
         }
     };
 
+    const reports = () => {
+        alert("Navigate to reports");
+    };
+
+    const lanyards = () => {
+            //alert("Navigate to Lanyards");
+            navigate("/Lanyards");
+    };
+
+    const register = () => {
+                alert("Navigate to Register Participant");
+    };
+
     return (
         <>
         {user ?
@@ -80,29 +97,17 @@ const handleFileSelect = (fileItem) => {
         <>
         <h1>Admin Page</h1>
 
-        <h2>Import Personal Details from Excel File</h2>
-         {error && <p className="error">{error}</p>}
-        <Box component="form" sx={{'& > :not(style)': {m: 2, width: '20ch'},} }
-             noValidate autoComplete="off">
-            <TextField id="fileName" type="file" onChange={handleFileSelect} style={{width:300}}/>
-            {results ?
-                <Select labelId="select-events" id="select-events" value={eventId} label="Event"
-                    onChange={handleMenuSelect} style={{width:300}} >
-                    {results.Event?.map((e, index) => {
-                        return (
-                            <MenuItem key={e.name} value={e.uid}>
-                                {e.name}
-                            </MenuItem>
-                        );
-                    })}
-                </Select>
-            : null }
-            <br/>
-            <Button variant="contained" onClick={uploadFile} class="input-button" style={{width: 100, height: 50}}>Upload</Button>
-        </Box>
-        {eventAttendees ? (<EventAttendeesResultsPage rows={eventAttendees.EventAttendees}/>) : null}
 
+        <Box component="form" sx={{'& > :not(style)': {m: 2, width: '25ch'},}}
+            noValidate autoComplete="off">
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={reports}>Reports</Button>
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={lanyards}>Print Lanyards</Button>
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={register}>Register Participant</Button>
+
+            <ImportPeople/>
+        </Box>
         </>
+
         )
         :
         <LoginPage tab={tab}/>
