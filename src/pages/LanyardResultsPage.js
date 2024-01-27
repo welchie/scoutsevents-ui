@@ -14,8 +14,16 @@ import axios from 'axios';
 import bm24logo from '../images/BM2024.png';
 import scoutslogo from '../images/logo_purple.png';
 import LanyardFront from './LanyardFront';
-import green_blue_teal from '../images/green_blue_teal.png';
+import ProgrammeOnePage from './ProgrammeOnePage';
+import ProgrammeTwoPage from './ProgrammeTwoPage';
+import ProgrammeAdultsPage from './ProgrammeAdultsPage';
 import teal_banner from '../images/teal_banner.png';
+import yellow_banner from '../images/yellow_banner.png';
+import purple_banner from '../images/purple_banner.png';
+import red_banner from '../images/red_banner.png';
+import orange_banner from '../images/orange_banner.png';
+import blue_banner from '../images/blue_banner.png';
+import green_banner from '../images/green_banner.png';
 
 const LanyardResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
@@ -54,90 +62,73 @@ const LanyardResultsPage = ({rows}) => {
     };
 
     return (
-<Paper sx={{ width: '100%' }} style={{width:1000}}>
+    <Paper sx={{ width: '100%' }} style={{width:1000}}>
+        {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
+        <TableContainer component={Paper} style={{width:1000}}>
+        <Table size="small" tickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+                <TableCell align="left">Lanyard</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+              <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0, padding:"10px" } }} >
+                <TableCell align="left">
+                    <>
+                    <table style={{width:"300"}}>
+                        <tr>
+                            <td>
+                                {row.subCamp === "Adult" || row.subCamp === "Young Leaders" ? <img src={yellow_banner} alt="yellow_banner" width="100" height="800"/> : null}
+                                {row.subCamp === "Purple" ? <img src={purple_banner} alt="purple_banner" width="100" height="800"/> : null}
+                                {row.subCamp === "Red" ? <img src={red_banner} alt="red_banner" width="100" height="800"/> : null}
+                                {row.subCamp === "Teal" || row.subCamp === "Light Blue" ? <img src={teal_banner} alt="teal_banner" width="100" height="800"/> : null}
+                                {row.subCamp === "Green" ? <img src={green_banner} alt="green_banner" width="100" height="800"/> : null}
+                                {row.subCamp === "Orange" ? <img src={orange_banner} alt="orange_banner" width="100" height="800"/> : null}
+                                {row.subCamp === "Blue" || row.subCamp === "Dark Blue"? <img src={blue_banner} alt="blue_banner" width="100" height="800"/> : null}
+                            </td>
+                            <td style={{width:"50%"}}>
+                                <h3><pre style={{padding:'0px', align:'left'}}>   {row.firstName}       </pre></h3>
+                                <h3><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h3>
+                                <h3><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h3>
+                                <h3><pre style={{padding:'0px'}}>   {row.subCamp}          </pre></h3>
+                                 <br/><img src={url+ row.uid} alt="qrcode" style={{align:'middle',padding:'90px'}} width="150" height="150"/>
+                                 <br/><br/><br/><br/>
+                                 <img src={scoutslogo} alt="Scouts Logo" width="50" height="50"/>  <img src={bm24logo} alt="BM2024" align="right" width="50" height="50"/>
+                            </td>
 
-
-    {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
-    <TableContainer component={Paper} style={{width:1000}}>
-    <Table size="small" tickyHeader aria-label="sticky table">
-      <TableHead>
-        <TableRow>
-            <TableCell align="left">Lanyard Front</TableCell>
-            <TableCell align="left">Lanyard Back</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-      {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-          <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0, padding:"10px" } }} >
-            <TableCell align="left">
-                <>
-                <table style={{width:"300"}}>
-                    <tr>
-                        <td><img src={teal_banner} alt="banner" width="100" height="800"/></td>
-                        <td style={{width:"50%"}}>
-                            <h3><pre style={{padding:'0px', align:'left'}}>   {row.firstName}       </pre></h3>
-                            <h3><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h3>
-                            <h3><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h3>
-                            <h3><pre style={{padding:'0px'}}>   Sub Camp: {row.subCamp}     </pre></h3>
-                             <br/><img src={url+ row.uid} alt="qrcode" style={{align:'middle',padding:'90px'}} width="150" height="150"/>
-                             <br/><br/><br/><br/>
-                             <img src={scoutslogo} alt="Scouts Logo" width="50" height="50"/>  <img src={bm24logo} alt="BM2024" align="right" width="50" height="50"/>
-                        </td>
-
-                        <td style={{width:"40%"}}>
-                            <h2>TIMETABLE</h2>
-                            <img src={green_blue_teal} alt="green_blue_treal" width="150" height="20"/>
-                            <h3><u>Saturday</u></h3>
-                            <pre>12pm          Registration in the Barn
-                                <br/>              & setup in Druim Field</pre>
-                            <pre>2pm           Activities– Zone A</pre>
-                            <pre>3.30pm - 4pm  Break / snacks</pre>
-                            <pre>4pm           Activities– Zone B</pre>
-                            <pre>5.30pm        Dinner</pre>
-                            <pre>6.30pm        Campfire</pre>
-                            <pre>7.30pm        Meet in evening groups on Main Field</pre>
-                            <pre>10pm          Supper in Barn</pre>
-                            <pre>11pm          Lights out/ Noise Curfew</pre>
-                            <h3><u>Sunday</u></h3>
-                            <pre>7:30am         Wakey, wakey, rise & shine</pre>
-                            <pre>8am            Start packing up, cereal bars <br/>               & refreshments in Druim Field</pre>
-                            <pre>8:30am         Breakfast</pre>
-                            <pre>9:30am         All sub-camps to the Druim Field<br/>               (ready for activities)</pre>
-                            <pre>10am           Activity Groups > By Subcamp</pre>
-                            <pre>12pm           Activities finish - return to Main Field</pre>
-                            <pre>12:15pm        Prize Giving - Flagpole (Main Field)</pre>
-                            <pre>12:45pm        Safe journey home Pick Up <br/>               - West Carnethy Ave</pre>
-                         </td>
-                    </tr>
-
-
-
-                </table>
-                </>
-
-           </TableCell>
-
-            <TableCell align="left"></TableCell>
-            {DEV_MODE === 'dev' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-   <TablePagination
-   rowsPerPageOptions={[10, 25, 100]}
-   component="div"
-   count={rows.length}
-   rowsPerPage={rowsPerPage}
-   page={page}
-   onPageChange={handleChangePage}
-   onRowsPerPageChange={handleChangeRowsPerPage}
-   style={{width:1100}}
- />
+                            <td style={{width:"40%"}}>
+                                  {row.subCamp === "Green" || row.subCamp === "Blue" || row.subCamp === "Dark Blue" || row.subCamp === "Teal" || row.subCamp === "Light Blue" ? <ProgrammeOnePage/> : null }
+                                  {row.subCamp === "Purple" || row.subCamp === "Orange" || row.subCamp === "Red"? <ProgrammeTwoPage/> : null }
+                                  {row.subCamp === "Adult" || row.subCamp === "Young Leaders"? <ProgrammeAdultsPage/> : null }
+                             </td>
+                        </tr>
+                    </table>
+                    </>
+               </TableCell>
+               <TableCell align="left"></TableCell>
+               {DEV_MODE === 'dev' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+       <TablePagination
+       rowsPerPageOptions={[10, 25, 100]}
+       component="div"
+       count={rows.length}
+       rowsPerPage={rowsPerPage}
+       page={page}
+       onPageChange={handleChangePage}
+       onRowsPerPageChange={handleChangeRowsPerPage}
+       style={{width:1100}}
+     />
 
  </Paper>
+
+
 
     )
 }

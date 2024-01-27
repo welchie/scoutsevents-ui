@@ -19,7 +19,6 @@ const LanyardsPage = () =>
     const [results,setResults] = useState('');
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
-    const [dob,setDob] = useState('');
     const [error, setError] = useState('');
 
     const {user} = useUser();
@@ -39,8 +38,7 @@ const LanyardsPage = () =>
             setError('');
             setResults(null);
 
-            var convertDob = dayjs(dob).format('DD/MM/YYYY');
-            var url = API_URL + "/person/find?firstName=" + firstName + "&lastName=" + lastName + "&dob=" + convertDob;
+            var url = API_URL + "/person/find?firstName=" + firstName + "&lastName=" + lastName ;
             const response = await axios.get(url,{API_HEADERS});
             setResults(response.data);
         }
@@ -95,12 +93,7 @@ const LanyardsPage = () =>
                                }}/>
                     <br></br>
 
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateTimePicker label="Date of Birth" ampm={false} value={dob} format="DD/MM/YYYY"
-                                        onChange={(newValue) => setDob(newValue)}/>
-                    </LocalizationProvider>
 
-                    <br></br>
                     <Button variant="contained" onClick={search} class="input-button"
                             style={{width: 100, height: 50}}>Search
                     </Button>
