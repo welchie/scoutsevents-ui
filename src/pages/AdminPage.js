@@ -78,13 +78,13 @@ const handleFileSelect = (fileItem) => {
     };
 
     const reports = () => {
-        //alert("Navigate to reports");
-        navigate("/Reports" );
+        navigate("/Lanyards")
+
     };
 
     const lanyards = () => {
             //alert("Navigate to Lanyards");
-            navigate("/Lanyards");
+            navigate("/Reports");
     };
 
     const register = () => {

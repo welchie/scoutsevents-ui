@@ -139,9 +139,9 @@ const ReportsPage = () => {
                 {results ?
                     <div>
 
-                    <Paper sx={{ width: '100%' }} style={{width:780}}>
+                    <Paper sx={{ width: '100%' }} style={{width:800}}>
                                             {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
-                                            <TableContainer component={Paper} style={{width:770}}>
+                                            <TableContainer component={Paper} style={{width:800}}>
                                                 <Table size="small" tickyHeader aria-label="sticky table">
                                                   <TableBody>
                                                     {results.Person
@@ -166,7 +166,7 @@ const ReportsPage = () => {
                                                     page={page}
                                                     onPageChange={handleChangePage}
                                                     onRowsPerPageChange={handleChangeRowsPerPage}
-                                                    style={{width:1100}}
+                                                    style={{width:200}}
                                                   />
                                                  <Button variant="contained" onClick={handlePrint} class="input-button" style={{width: 100, height: 50}}>Print</Button>
                                              </Paper>

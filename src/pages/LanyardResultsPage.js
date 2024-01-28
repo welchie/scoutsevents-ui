@@ -64,9 +64,9 @@ const LanyardResultsPage = ({rows}) => {
     };
 
     return (
-    <Paper sx={{ width: '100%' }} style={{width:780}}>
+    <Paper sx={{ width: '100%' }} style={{width:1000}}>
         {DEV_MODE === 'dev' ? <p>API_URL: {API_URL}</p>: <br/>}
-        <TableContainer component={Paper} style={{width:770}}>
+        <TableContainer component={Paper} style={{width:1000}}>
         <Table size="small" tickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -92,9 +92,9 @@ const LanyardResultsPage = ({rows}) => {
                                 {row.subCamp === "Blue" || row.subCamp === "Dark Blue"? <img src={blue_banner} alt="blue_banner" width="50" height="800"/> : null}
                             </td>
                             <td style={{width:"30%"}}>
-                                <h3><pre style={{padding:'0px', align:'left'}}>   {row.firstName}       </pre></h3>
-                                <h3><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h3>
-                                <h3><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h3>
+                                <h1><pre style={{padding:'0px', align:'left'}}>   {row.firstName}   CW    </pre></h1>
+                                <h1><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h1>
+                                <h1><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h1>
                                 <h3><pre style={{padding:'0px'}}>   {row.subCamp}          </pre></h3>
                                  <br/><img src={url+ row.uid} alt="qrcode" style={{align:'middle',padding:'90px'}} width="150" height="150"/>
                                  <br/><br/><br/><br/>
