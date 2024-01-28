@@ -25,7 +25,6 @@ return (
         <pre>9:30am    Activity briefing/setup</pre>
         <pre>10am      Activities– Zone D</pre>
         <pre>12pm      Activities finish <br/>          - return Main Field    </pre>
-        <pre>12:15pm   Prize Giving - Flagpole</pre>
         </font>
     </>
 

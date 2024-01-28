@@ -152,7 +152,7 @@ const ReportsPage = () => {
                                                             <><PrintPage ref={componentRef} person={row} results={results}/></>
                                                         </TableCell>
                                                         <TableCell align="left"></TableCell>
-                                                        {DEV_MODE === 'dev' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
+
                                                       </TableRow>
                                                          ))}
                                                      </TableBody>

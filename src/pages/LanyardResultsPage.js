@@ -92,7 +92,7 @@ const LanyardResultsPage = ({rows}) => {
                                 {row.subCamp === "Blue" || row.subCamp === "Dark Blue"? <img src={blue_banner} alt="blue_banner" width="50" height="800"/> : null}
                             </td>
                             <td style={{width:"30%"}}>
-                                <h1><pre style={{padding:'0px', align:'left'}}>   {row.firstName}   CW    </pre></h1>
+                                <h1><pre style={{padding:'0px', align:'left'}}>   {row.firstName} </pre></h1>
                                 <h1><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h1>
                                 <h1><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h1>
                                 <h3><pre style={{padding:'0px'}}>   {row.subCamp}          </pre></h3>
@@ -112,7 +112,6 @@ const LanyardResultsPage = ({rows}) => {
                     </>
                </TableCell>
                <TableCell align="left"></TableCell>
-               {DEV_MODE === 'dev' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
               </TableRow>
             ))}
           </TableBody>

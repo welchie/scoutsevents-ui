@@ -28,8 +28,6 @@ return (
         <pre>9:30am   Druim Field<br/>         (ready for activities)                    </pre>
         <pre>10am     Activity Groups </pre>
         <pre>12pm     Activities finish <br/>         - return to Main Field       </pre>
-        <pre>12:15pm  Prize Giving - Flagpole</pre>
-        <pre>12:45pm  Safe journey home Pick Up <br/>         - Grant Ave</pre>
         </font>
     </>
 
