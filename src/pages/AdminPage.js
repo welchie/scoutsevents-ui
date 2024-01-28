@@ -78,7 +78,8 @@ const handleFileSelect = (fileItem) => {
     };
 
     const reports = () => {
-        alert("Navigate to reports");
+        //alert("Navigate to reports");
+        navigate("/Reports" );
     };
 
     const lanyards = () => {

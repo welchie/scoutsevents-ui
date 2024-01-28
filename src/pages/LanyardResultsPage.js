@@ -25,6 +25,8 @@ import orange_banner from '../images/orange_banner.png';
 import blue_banner from '../images/blue_banner.png';
 import green_banner from '../images/green_banner.png';
 
+import ReportsPage from './ReportsPage';
+
 const LanyardResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -68,7 +70,7 @@ const LanyardResultsPage = ({rows}) => {
         <Table size="small" tickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-                <TableCell align="left">Lanyard</TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
@@ -106,6 +108,7 @@ const LanyardResultsPage = ({rows}) => {
                              </td>
                         </tr>
                     </table>
+
                     </>
                </TableCell>
                <TableCell align="left"></TableCell>
