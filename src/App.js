@@ -10,6 +10,7 @@ import CreateAccountPage from './pages/CreateAccountPage';
 import PersonPage from './pages/PersonPage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LanyardsPage from './pages/LanyardsPage';
+import ReportsPage from './pages/ReportsPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
              <Route path="*" element={<LoginPage/>}/>
              <Route path="/Person/:uid" element={<PersonPage />}/>
              <Route path="/Lanyards" element = {<LanyardsPage />} />
+             <Route path="/Reports" element = {<ReportsPage />} />
              </Routes>
             </div>
 

@@ -93,7 +93,6 @@ const LanyardsPage = () =>
                                }}/>
                     <br></br>
 
-
                     <Button variant="contained" onClick={search} class="input-button"
                             style={{width: 100, height: 50}}>Search
                     </Button>
