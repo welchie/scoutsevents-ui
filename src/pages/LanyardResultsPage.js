@@ -13,6 +13,7 @@ import { styled } from '@mui/system';
 import axios from 'axios';
 import bm24logo from '../images/BM2024.png';
 import scoutslogo from '../images/logo_purple.png';
+import whitelogo from '../images/white.png';
 import LanyardFront from './LanyardFront';
 import ProgrammeOnePage from './ProgrammeOnePage';
 import ProgrammeTwoPage from './ProgrammeTwoPage';
@@ -83,7 +84,7 @@ const LanyardResultsPage = ({rows}) => {
                     <table>
                         <tr>
                             <td style={{width:"10%"}}>
-                                {row.subCamp === "Adult" || row.subCamp === "Young Leaders" ? <img src={yellow_banner} alt="yellow_banner" width="50" height="800"/> : null}
+                                {row.subCamp === "Adult" || row.subCamp === "Young Leaders" || row.subCamp === " "? <img src={yellow_banner} alt="yellow_banner" width="50" height="800"/> : null}
                                 {row.subCamp === "Purple" ? <img src={purple_banner} alt="purple_banner" width="50" height="800"/> : null}
                                 {row.subCamp === "Red" ? <img src={red_banner} alt="red_banner" width="50" height="800"/> : null}
                                 {row.subCamp === "Teal" || row.subCamp === "Light Blue" ? <img src={teal_banner} alt="teal_banner" width="50" height="800"/> : null}
@@ -91,20 +92,20 @@ const LanyardResultsPage = ({rows}) => {
                                 {row.subCamp === "Orange" ? <img src={orange_banner} alt="orange_banner" width="50" height="800"/> : null}
                                 {row.subCamp === "Blue" || row.subCamp === "Dark Blue"? <img src={blue_banner} alt="blue_banner" width="50" height="800"/> : null}
                             </td>
-                            <td style={{width:"30%"}}>
+                            <td style={{width:"50"}}>
                                 <h1><pre style={{padding:'0px', align:'left'}}>   {row.firstName} </pre></h1>
                                 <h1><pre style={{padding:'0px'}}>   {row.lastName}  </pre></h1>
                                 <h1><pre style={{padding:'0px'}}>   Group: {row.scoutGroup}     </pre></h1>
                                 <h3><pre style={{padding:'0px'}}>   {row.subCamp}          </pre></h3>
                                  <br/><img src={url+ row.uid} alt="qrcode" style={{align:'middle',padding:'90px'}} width="150" height="150"/>
                                  <br/><br/><br/><br/>
-                                 <img src={scoutslogo} alt="Scouts Logo" width="50" height="50"/>  <img src={bm24logo} alt="BM2024" align="right" width="50" height="50"/>
+                                 <img src={scoutslogo} alt="Scouts Logo" width="50" height="50"/>  <img src={whitelogo} alt="whitelogo"  width="200" height="50"/> <img src={bm24logo} alt="BM2024" width="50" height="50"/>
                             </td>
 
                             <td style={{width:"30%"}}>
                                   {row.subCamp === "Green" || row.subCamp === "Blue" || row.subCamp === "Dark Blue" || row.subCamp === "Teal" || row.subCamp === "Light Blue" ? <ProgrammeOnePage/> : null }
                                   {row.subCamp === "Purple" || row.subCamp === "Orange" || row.subCamp === "Red"? <ProgrammeTwoPage/> : null }
-                                  {row.subCamp === "Adult" || row.subCamp === "Young Leaders"? <ProgrammeAdultsPage/> : null }
+                                  {row.subCamp === "Adult" || row.subCamp === "Young Leaders" || row.subCamp === " "? <ProgrammeAdultsPage/> : null }
                              </td>
                         </tr>
                     </table>

@@ -64,7 +64,7 @@ export class PrintPage extends React.PureComponent {
             <table width="900">
                 <tr>
                     <td style={{width:"50"}}>
-                        {this.props.person.subCamp === "Adult" || this.props.person.subCamp === "Young Leaders" ? <img src={yellow_banner} alt="yellow_banner" width="50" height="500"/> : null}
+                        {this.props.person.subCamp === "Adult" || this.props.person.subCamp === "Young Leaders" || this.props.person.subCamp === " " ? <img src={yellow_banner} alt="yellow_banner" width="50" height="500"/> : null}
                         {this.props.person.subCamp === "Purple" ? <img src={purple_banner} alt="purple_banner" width="50" height="500"/> : null}
                         {this.props.person.subCamp === "Red" ? <img src={red_banner} alt="red_banner" width="50" height="500"/> : null}
                         {this.props.person.subCamp === "Teal" || this.props.person.subCamp === "Light Blue" ? <img src={teal_banner} alt="teal_banner" width="50" height="500"/> : null}
@@ -78,12 +78,13 @@ export class PrintPage extends React.PureComponent {
                         <h1><pre style={{padding:'0px', align:'center'}}>   {this.props.person.scoutGroup}</pre></h1>
                         <h1><pre style={{padding:'0px', align:'center'}}>   {this.props.person.subCamp}</pre></h1>
                         <img src={url+ this.props.person.uid} alt="qrcode" style={{align:'middle',padding:'100px'}} width="150" height="150"/>
+
                     </td>
 
-                     <td style={{width:"200"}}>
+                     <td style={{width:"50"}}>
                           {this.props.person.subCamp === "Green" || this.props.person.subCampp === "Blue" || this.props.person.subCamp === "Dark Blue" || this.props.person.subCamp === "Teal" || this.props.person.subCamp === "Light Blue" ? <ProgrammeOnePage/> : null }
                           {this.props.person.subCamp === "Purple" || this.props.person.subCamp === "Orange" || this.props.person.subCamp === "Red"? <ProgrammeTwoPage/> : null }
-                          {this.props.person.subCamp === "Adult" || this.props.person.subCamp === "Young Leaders"? <ProgrammeAdultsPage/> : null }
+                          {this.props.person.subCamp === "Adult" || this.props.person.subCamp === "Young Leaders" || this.props.person.subCamp === " " ? <ProgrammeAdultsPage/> : null }
                      </td>
                 </tr>
             </table>
