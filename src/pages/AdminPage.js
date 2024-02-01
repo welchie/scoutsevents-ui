@@ -35,6 +35,9 @@ const AdminPage = () =>
   const [error, setError] = useState('');
   const [eventId, setEventId] = React.useState('');
 
+  var exportUrl = API_URL + "/admin/person/export/people/all/excel";
+  //exportUrl = "http://bbc.co.uk/sport";
+
 const handleMenuSelect = (menuItem) => {
     const value =  menuItem.target.value;
     setEventId(value);
@@ -53,7 +56,6 @@ const handleFileSelect = (fileItem) => {
 
         //C:\fakepath\people_import.xlsx
         const file = "/Users/chris.welch/workspace/personal/scoutsevents/src/test/resources/people_import.xlsx";
-        //alert('Uploading file: ' + file +   " Event:" + eventId);
         var url = API_URL + "/admin/person/import/people?fileName=" + file + "&eventUid=" + eventId;
         const response = await axios.get(url,{API_HEADERS});
         setEventAttendees(response.data);
@@ -76,6 +78,11 @@ const handleFileSelect = (fileItem) => {
             setError(e.message);
         }
     };
+
+     const subcamps = () => {
+            navigate("/SubCamps")
+
+        };
 
     const reports = () => {
         navigate("/Lanyards")
@@ -101,10 +108,10 @@ const handleFileSelect = (fileItem) => {
 
         <Box component="form" sx={{'& > :not(style)': {m: 2, width: '25ch'},}}
             noValidate autoComplete="off">
-            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={reports}>Reports</Button>
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={subcamps}>Sub Camps</Button>
             <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={lanyards}>Print Lanyards</Button>
             <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={register}>Register Participant</Button>
-
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} ><a href={exportUrl}>Export Person DB</a> </Button>
             <ImportPeople/>
         </Box>
         </>
