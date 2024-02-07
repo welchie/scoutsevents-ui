@@ -137,7 +137,10 @@ const DEV_MODE =  process.env.REACT_APP_MODE;
           <br/>Position: {person.position}
           <br/>Medicine: {person.medicine}
           <br/>Allergies: {person.allergies}
-          <br/>Photo Permission: {person.photoPermission}
+          <br/>Photo Permission:
+          {eventAttendee.photoPermission === 'false' ? <b style={{color:"red"}}> <CloseIcon color="red" fontSize="large"/></b> :
+                    <><b style={{color:"green"}}> <DoneIcon color="green" fontSize="large"/></b></> }
+
 
           <br/><h3>Contact Details</h3>
           <br/>Email: {person.contactEmail}

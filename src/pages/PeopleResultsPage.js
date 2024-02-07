@@ -37,7 +37,8 @@ const PeopleResultsPage = ({rows}) => {
 
 
   var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
-  var personBaseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/Person/" ;
+  //var personBaseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/Person/" ;
+  var personBaseUrl = REACT_APP_URL + "/Person/" ;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -79,7 +80,7 @@ const PeopleResultsPage = ({rows}) => {
             <TableCell align="left">{row.dob}</TableCell>
             <TableCell align="left" >{row.subCamp}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
-            <TableCell align="left"><a href src={personBaseUrl+ row.uid}>{personBaseUrl+ row.uid}</a></TableCell>
+            <TableCell align="left"><a href={personBaseUrl+ row.uid}>{personBaseUrl+ row.uid}</a></TableCell>
             <TableCell align="left"><img src={url+ row.uid} alt="qrcode" width="150" height="150"/></TableCell>
 
             {DEV_MODE === 'debug' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}

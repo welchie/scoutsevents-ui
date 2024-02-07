@@ -12,6 +12,8 @@ import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { styled } from '@mui/system';
 import PersonDetailPage from './PersonDetailPage';
 import axios from 'axios';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 
 const SubCampsResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
@@ -59,13 +61,13 @@ const SubCampsResultsPage = ({rows}) => {
     <Table size="small" tickyHeader aria-label="sticky table">
       <TableHead>
         <TableRow>
+            <TableCell align="left">Checked In?</TableCell>
             <TableCell align="left">First Name</TableCell>
             <TableCell align="left">Last Name</TableCell>
             <TableCell align="left">Sub Camp</TableCell>
             <TableCell align="left">Group</TableCell>
             <TableCell align="left">Allergies</TableCell>
             <TableCell align="left">Dietary</TableCell>
-            <TableCell align="left">Photos?</TableCell>
             <TableCell align="left">Medicine</TableCell>
 
             {DEV_MODE === 'debug' ? <TableCell align="left">UID</TableCell> : <br/>}
@@ -76,13 +78,13 @@ const SubCampsResultsPage = ({rows}) => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
           <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+            <TableCell align="left">{row.checkedIn === "true" ? <DoneIcon/> : <CloseIcon/> }</TableCell>
             <TableCell align="left">{row.firstName}</TableCell>
             <TableCell align="left">{row.lastName}</TableCell>
             <TableCell align="left" >{row.subCamp}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
             <TableCell style={{width:75}} align="left">{row.allergies}</TableCell>
             <TableCell style={{width:75}} align="left">{row.dietary}</TableCell>
-            <TableCell align="left">{row.photoPermission}</TableCell>
             <TableCell style={{width:75}} align="left">{row.medicine}</TableCell>
 
 
