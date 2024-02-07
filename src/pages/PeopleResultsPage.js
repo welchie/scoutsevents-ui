@@ -15,7 +15,7 @@ import axios from 'axios';
 
 const PeopleResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(100);
   const [anchor, setAnchor] = React.useState(null);
   const open = Boolean(anchor);
   const id = open ? 'simple-popup' : undefined;
@@ -37,7 +37,6 @@ const PeopleResultsPage = ({rows}) => {
 
 
   var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
-  //var personBaseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/Person/" ;
   var personBaseUrl = REACT_APP_URL + "/Person/" ;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -90,7 +89,7 @@ const PeopleResultsPage = ({rows}) => {
     </Table>
   </TableContainer>
    <TablePagination
-   rowsPerPageOptions={[10, 25, 100]}
+   rowsPerPageOptions={[100, 150, 200]}
    component="div"
    count={rows.length}
    rowsPerPage={rowsPerPage}

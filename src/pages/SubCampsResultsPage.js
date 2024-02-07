@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const SubCampsResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(100);
   const [anchor, setAnchor] = React.useState(null);
   const open = Boolean(anchor);
   const id = open ? 'simple-popup' : undefined;
@@ -39,7 +39,6 @@ const SubCampsResultsPage = ({rows}) => {
 
 
   var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
-  var personBaseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/Person/" ;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -64,6 +63,7 @@ const SubCampsResultsPage = ({rows}) => {
             <TableCell align="left">Checked In?</TableCell>
             <TableCell align="left">First Name</TableCell>
             <TableCell align="left">Last Name</TableCell>
+            <TableCell align="left">Age</TableCell>
             <TableCell align="left">Sub Camp</TableCell>
             <TableCell align="left">Group</TableCell>
             <TableCell align="left">Allergies</TableCell>
@@ -81,6 +81,7 @@ const SubCampsResultsPage = ({rows}) => {
             <TableCell align="left">{row.checkedIn === "true" ? <DoneIcon/> : <CloseIcon/> }</TableCell>
             <TableCell align="left">{row.firstName}</TableCell>
             <TableCell align="left">{row.lastName}</TableCell>
+            <TableCell align="left">{row.dob}</TableCell>
             <TableCell align="left" >{row.subCamp}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
             <TableCell style={{width:75}} align="left">{row.allergies}</TableCell>
@@ -95,7 +96,7 @@ const SubCampsResultsPage = ({rows}) => {
     </Table>
   </TableContainer>
    <TablePagination
-   rowsPerPageOptions={[10, 25, 100]}
+   rowsPerPageOptions={[100, 150, 200]}
    component="div"
    count={rows.length}
    rowsPerPage={rowsPerPage}

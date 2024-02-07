@@ -12,7 +12,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const EventAttendeesResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(100);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -55,7 +55,7 @@ return (
               </TableBody>
             </Table>
           </TableContainer>
-           <TablePagination rowsPerPageOptions={[10, 25, 100]} component="div" count={rows.length} rowsPerPage={rowsPerPage}
+           <TablePagination rowsPerPageOptions={[100, 150, 200]} component="div" count={rows.length} rowsPerPage={rowsPerPage}
                 page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} style={{width:1100}} />
          </Paper>
     )
