@@ -95,7 +95,7 @@ const handleFileSelect = (fileItem) => {
     };
 
     const register = () => {
-                alert("Navigate to Register Participant");
+               navigate("/Register");
     };
 
     return (

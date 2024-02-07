@@ -15,7 +15,7 @@ import axios from 'axios';
 
 const PeopleResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(100);
   const [anchor, setAnchor] = React.useState(null);
   const open = Boolean(anchor);
   const id = open ? 'simple-popup' : undefined;
@@ -37,7 +37,7 @@ const PeopleResultsPage = ({rows}) => {
 
 
   var url = API_URL +  "/barcodes/qrcode/?url=" + REACT_APP_URL + "/Person/" ;
-  var personBaseUrl = "http://ec2-18-201-141-234.eu-west-1.compute.amazonaws.com/Person/" ;
+  var personBaseUrl = REACT_APP_URL + "/Person/" ;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -79,7 +79,7 @@ const PeopleResultsPage = ({rows}) => {
             <TableCell align="left">{row.dob}</TableCell>
             <TableCell align="left" >{row.subCamp}</TableCell>
             <TableCell align="left">{row.scoutGroup}</TableCell>
-            <TableCell align="left"><a href src={personBaseUrl+ row.uid}>{personBaseUrl+ row.uid}</a></TableCell>
+            <TableCell align="left"><a href={personBaseUrl+ row.uid}>{personBaseUrl+ row.uid}</a></TableCell>
             <TableCell align="left"><img src={url+ row.uid} alt="qrcode" width="150" height="150"/></TableCell>
 
             {DEV_MODE === 'debug' ? <TableCell align="left">{row.uid}</TableCell> : <br/>}
@@ -89,7 +89,7 @@ const PeopleResultsPage = ({rows}) => {
     </Table>
   </TableContainer>
    <TablePagination
-   rowsPerPageOptions={[10, 25, 100]}
+   rowsPerPageOptions={[100, 150, 200]}
    component="div"
    count={rows.length}
    rowsPerPage={rowsPerPage}

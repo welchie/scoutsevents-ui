@@ -30,7 +30,7 @@ import ReportsPage from './ReportsPage';
 
 const LanyardResultsPage = ({rows}) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(100);
   const [anchor, setAnchor] = React.useState(null);
   const open = Boolean(anchor);
   const id = open ? 'simple-popup' : undefined;
@@ -119,7 +119,7 @@ const LanyardResultsPage = ({rows}) => {
         </Table>
       </TableContainer>
        <TablePagination
-       rowsPerPageOptions={[10, 25, 100]}
+       rowsPerPageOptions={[100, 150, 200]}
        component="div"
        count={rows.length}
        rowsPerPage={rowsPerPage}
