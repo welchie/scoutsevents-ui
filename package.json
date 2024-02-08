@@ -1,6 +1,6 @@
 {
   "name": "scoutsevents-ui",
-  "version": "0.0.2",
+  "version": "0.0.18",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
