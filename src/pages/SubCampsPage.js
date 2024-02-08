@@ -1,15 +1,9 @@
 import Button from '@mui/material/Button';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 import SubCampsResultsPage from "./SubCampsResultsPage";
 import { useState } from "react";
 import axios from 'axios';
-import dayjs from 'dayjs';
-import MenuPage from "./MenuPage";
 import useUser from '../hooks/useUser';
 import LoginPage from "./LoginPage";
 
@@ -92,7 +86,7 @@ const SubCampsPage = () =>
                 <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
                      noValidate autoComplete="off">
                      <FormControl fullWidth>
-                       <InputLabel id="demo-simple-select-label">Sub Camp</InputLabel>
+                       <InputLabel id="demo-simple-select-label" style={{padding:'10px'}}>Sub Camp</InputLabel>
                        <Select
                          labelId="demo-simple-select-label"
                          id="demo-simple-select"
@@ -101,14 +95,15 @@ const SubCampsPage = () =>
                          onChange={handleChange}
                        >
 
-                        <MenuItem value={"Purple"}>Purple</MenuItem>
-                        <MenuItem value={"Orange"}>Orange</MenuItem>
-                        <MenuItem value={"Red"}>Red</MenuItem>
-                        <MenuItem value={"Green"}>Green</MenuItem>
+                        <MenuItem value={"All"}>All</MenuItem>
+                        <MenuItem value={"Adult"}>Adult</MenuItem>
                         <MenuItem value={"Dark Blue"}>Dark Blue</MenuItem>
+                        <MenuItem value={"Green"}>Green</MenuItem>
                         <MenuItem value={"Light Blue"}>Light Blue</MenuItem>
-                         <MenuItem value={"Adult"}>Adult</MenuItem>
-                         <MenuItem value={"Young Leaders"}>Young Leaders</MenuItem>
+                        <MenuItem value={"Orange"}>Orange</MenuItem>
+                        <MenuItem value={"Purple"}>Purple</MenuItem>
+                        <MenuItem value={"Red"}>Red</MenuItem>
+                        <MenuItem value={"Young Leaders"}>Young Leaders</MenuItem>
                        </Select>
                      </FormControl>
 
