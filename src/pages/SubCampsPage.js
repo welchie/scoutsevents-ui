@@ -97,6 +97,7 @@ const SubCampsPage = () =>
 
                         <MenuItem value={"All"}>All</MenuItem>
                         <MenuItem value={"Adult"}>Adult</MenuItem>
+                        <MenuItem value={"Blue"}>Blue</MenuItem>
                         <MenuItem value={"Dark Blue"}>Dark Blue</MenuItem>
                         <MenuItem value={"Green"}>Green</MenuItem>
                         <MenuItem value={"Light Blue"}>Light Blue</MenuItem>

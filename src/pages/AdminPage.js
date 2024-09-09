@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import EventAttendeesResultsPage from "./EventAttendeesResultsPage";
 import ImportPeople from "./ImportPeople";
+import barrwood24 from '../images/barrwood24.png';
 
 import {useNavigate} from 'react-router-dom';
 
@@ -36,7 +37,6 @@ const AdminPage = () =>
   const [eventId, setEventId] = React.useState('');
 
   var exportUrl = API_URL + "/admin/person/export/people/all/excel";
-  //exportUrl = "http://bbc.co.uk/sport";
 
 const handleMenuSelect = (menuItem) => {
     const value =  menuItem.target.value;
@@ -85,14 +85,18 @@ const handleFileSelect = (fileItem) => {
         };
 
     const reports = () => {
-        navigate("/Lanyards")
+        navigate("/Reports")
 
     };
 
     const lanyards = () => {
             //alert("Navigate to Lanyards");
-            navigate("/Reports");
+            navigate("/Lanyards");
     };
+
+     const barrwood = () => {
+                navigate("/Barrwood24");
+        };
 
     const register = () => {
                navigate("/Register");
@@ -109,9 +113,11 @@ const handleFileSelect = (fileItem) => {
         <Box component="form" sx={{'& > :not(style)': {m: 2, width: '25ch'},}}
             noValidate autoComplete="off">
             <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={subcamps}>Sub Camps</Button>
-            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={lanyards}>Print Lanyards</Button>
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={lanyards}>Brass Monkey 24</Button>
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={barrwood}>Barrwood 2024</Button>
             <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={register}>Register Participant</Button>
-            <Button variant="contained" class="input-button"  style={{width:175, height:50}} ><a href={exportUrl}>Export Person DB</a> </Button>
+
+
             <ImportPeople/>
         </Box>
         </>

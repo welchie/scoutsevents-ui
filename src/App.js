@@ -13,6 +13,7 @@ import LanyardsPage from './pages/LanyardsPage';
 import ReportsPage from './pages/ReportsPage';
 import SubCampsPage from './pages/SubCampsPage';
 import RegisterPage from './pages/RegisterPage';
+import Barrwood24Page from './pages/Barrwood24Page';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
              <Route path="*" element={<LoginPage/>}/>
              <Route path="/Person/:uid" element={<PersonPage />}/>
              <Route path="/Lanyards" element = {<LanyardsPage />} />
+             <Route path="/Barrwood24" element = {<Barrwood24Page />} />
              <Route path="/Reports" element = {<ReportsPage />} />
               <Route path="/SubCamps" element = {<SubCampsPage />} />
                <Route path="/Register" element = {<RegisterPage />} />
