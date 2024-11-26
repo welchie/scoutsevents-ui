@@ -27,6 +27,15 @@ const columns: GridColDef[] = [
                 );
             }
  },
+ { field: 'url', headerName: 'QR Code', width:100, editable: false, renderCell:
+ (params) => {
+                 return (
+                     <div>
+                     <img src={"http://localhost:8080/barcodes/qrcode/?url=" + params.row.url} alt="qrcode" width="50" height="50"/>
+                     </div>
+                 );
+             }
+  },
   { field: 'firstName', headerName: 'First name', width: 100, editable: true },
   { field: 'lastName', headerName: 'Last name', width: 100, editable: true },
   { field: 'dob', headerName: 'Age', type: 'text', width: 110, editable: true },
@@ -50,6 +59,7 @@ const columns: GridColDef[] = [
         }
 
    },
+
 ];
 
 function getRowId(row) {

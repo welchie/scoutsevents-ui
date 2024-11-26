@@ -36,8 +36,9 @@ const columns: GridColDef[] = [
   { field: 'dob', headerName: 'Age', type: 'text', width: 75, editable: true },
   { field: 'subCamp', headerName: 'Sub Camp', type: 'text', width: 110, editable: true },
   { field: 'scoutGroup', headerName: 'Group', width:120, editable: false },
-  { field: 'url', headerName: 'URL', width:170, editable: false },
-  { field: 'qrcode', headerName: 'QR Code', width:150, editable: false },
+  { field: 'allergies', headerName: 'Allergies', width:400, editable: false },
+  { field: 'medicine', headerName: 'Medicine', width:400, editable: false },
+  { field: 'dietary', headerName: 'Dietary', width:400, editable: false },
   { field: 'uid', headerName: 'UID', width:300, editable: false }
 ];
 function getRowId(row) {
@@ -68,6 +69,8 @@ export default function EventsDataGrid({rows}) {
                 }}
       />
     </Box>
+
+
     </>
   );
   }
