@@ -7,6 +7,16 @@ import { green } from "@material-ui/core/colors";
 
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
+import axios from 'axios';
+import { useState } from "react";
+import Button from '@mui/material/Button';
+
+
+ const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_MODE } = process.env;
+
+ const API_URL =
+     NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
+
 
 function CustomToolbar() {
   return (
@@ -15,6 +25,51 @@ function CustomToolbar() {
     </GridToolbarContainer>
   );
 }
+
+ const checkin = async(eventAttendee) =>
+   {
+
+        alert("Checking in: " + eventAttendee) ;
+
+        try{
+
+           if (eventAttendee != null)
+           {
+               //alert("Checking in") ;
+               var checkIn = "true";
+               var url = API_URL + "/eventattendee/checkin?eventUID=" + eventAttendee.uid + "&personUID=" + eventAttendee + "&checkIn=" + checkIn ;
+               //alert(url);
+               const response = await axios.get(url,{REACT_APP_API_HEADERS});
+               eventAttendee = response.data.EventAttendee;
+               //setErrorMessage('');
+            }
+       }
+       catch (e) {
+           //setErrorMessage(e.message);
+       }
+   }
+
+    const checkout = async(eventAttendee) =>
+      {
+            //alert("Checking out");
+
+                  try{
+
+                     if (eventAttendee != null)
+                     {
+                         var checkIn = "false";
+                         var url = API_URL + "/eventattendee/checkin?eventUID=" + eventAttendee.eventUid + "&personUID=" + eventAttendee.uid + "&checkIn=" + checkIn ;
+                         //alert(url);
+                         const response = await axios.get(url,{REACT_APP_API_HEADERS});
+                         eventAttendee = response.data.EventAttendee;
+                         //setErrorMessage('');
+                      }
+                 }
+                 catch (e) {
+                    // setErrorMessage(e.message);
+                 }
+      }
+
 
 const columns: GridColDef[] = [
   { field: 'checkedIn', headerName: 'Checked In?', width: 100, editable: false, renderCell:
@@ -27,15 +82,25 @@ const columns: GridColDef[] = [
                 );
             }
  },
+
  { field: 'url', headerName: 'QR Code', width:100, editable: false, renderCell:
  (params) => {
                  return (
                      <div>
-                     <img src={"http://localhost:8080/barcodes/qrcode/?url=" + params.row.url} alt="qrcode" width="50" height="50"/>
+                     <img src={API_URL + "/barcodes/qrcode/?url=" + params.row.url} alt="qrcode" width="50" height="50"/>
                      </div>
                  );
              }
   },
+  { field: 'url2', headerName: 'URL', width:100, editable: false, renderCell:
+   (params) => {
+                   return (
+                       <div>
+                       <a href={params.row.url} alt="url" width="300" height="50">Details</a>
+                       </div>
+                   );
+               }
+    },
   { field: 'firstName', headerName: 'First name', width: 100, editable: true },
   { field: 'lastName', headerName: 'Last name', width: 100, editable: true },
   { field: 'dob', headerName: 'Age', type: 'text', width: 110, editable: true },
@@ -67,6 +132,9 @@ function getRowId(row) {
 };
 
 export default function SubCampDataGrid({rows}) {
+
+const [eventAttendee, setEventAttendee] = useState(null);
+ var [errorMessage, setErrorMessage] = useState('');
   return (
   <>
     <Box sx={{ height: 400, width: '150%' }}>
