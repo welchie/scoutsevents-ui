@@ -75,35 +75,33 @@ const columns: GridColDef[] = [
   { field: 'checkedIn', headerName: 'Checked In?', width: 100, editable: false, renderCell:
             (params) => {
                 return (
-                    <div>
-                    {params.row.checkedIn === "true" ? <DoneIcon style={{ color: green[500] }}/> : <CloseIcon style={{ color: red[500] }}/> }
+                    <div style={{ align: "right"}}>
+                    {params.row.checkedIn === "true" ? <DoneIcon style={{ color: green[500] , padding: 20}}/> : <CloseIcon style={{ color: red[500] , padding: 20}}/> }
 
                     </div>
                 );
             }
  },
 
- { field: 'url', headerName: 'QR Code', width:100, editable: false, renderCell:
+ { field: 'url', headerName: 'QR Code', width:75, editable: false, renderCell:
  (params) => {
                  return (
                      <div>
-                     <img src={API_URL + "/barcodes/qrcode/?url=" + params.row.url} alt="qrcode" width="50" height="50"/>
+                     <img src={API_URL + "/barcodes/qrcode/?url=" + params.row.url} alt="qrcode" width="60" height="60" />
                      </div>
                  );
              }
   },
-  { field: 'url2', headerName: 'URL', width:100, editable: false, renderCell:
+  { field: 'url2', headerName: 'Name', width:100, editable: false, renderCell:
    (params) => {
                    return (
                        <div>
-                       <a href={params.row.url} alt="url" width="300" height="50">Details</a>
+                       <a href={params.row.url} alt="url" width="300" height="50">{params.row.firstName} {params.row.lastName}</a>
                        </div>
                    );
                }
     },
-  { field: 'firstName', headerName: 'First name', width: 100, editable: true },
-  { field: 'lastName', headerName: 'Last name', width: 100, editable: true },
-  { field: 'dob', headerName: 'Age', type: 'text', width: 110, editable: true },
+  { field: 'dob', headerName: 'Age', type: 'text', width: 80, editable: true },
   { field: 'subCamp', headerName: 'Sub Camp', width:120, editable: false },
   { field: 'scoutGroup', headerName: 'Group', width:150, editable: false },
   { field: 'allergies', headerName: 'Allergies', width:200, editable: false },
