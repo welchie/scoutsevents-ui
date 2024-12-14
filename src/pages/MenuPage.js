@@ -37,6 +37,7 @@ const MenuPage = () => {
                 >
                     <MenuItem onClick={handleClose}>Events</MenuItem>
                     <MenuItem onClick={handleClose}>People</MenuItem>
+                    <MenuItem onClick={handleClose}>Sub Camps</MenuItem>
                     <MenuItem onClick={handleClose}>Activites</MenuItem>
                 </Menu>
             </div>

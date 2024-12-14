@@ -1,25 +1,115 @@
-import barrwood24 from '../images/barrwood24.png';
+import Button from '@mui/material/Button';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import * as React from 'react';
+import PeopleQRResultsPage from "./PeopleQRResultsPage";
+import { useState } from "react";
+import axios from 'axios';
+import dayjs from 'dayjs';
+import MenuPage from "./MenuPage";
+import useUser from '../hooks/useUser';
+import LoginPage from "./LoginPage";
 
-const Barrwood24Page = ({rows}) =>{
+const Barrwood24Page = () =>
+{
+    const [results,setResults] = useState('');
+    const [firstName,setFirstName] = useState('');
+    const [lastName,setLastName] = useState('');
+    const [error, setError] = useState('');
 
-return (
+    const {user} = useUser();
+    const tab = "/People"
 
+    const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV } = process.env;
 
+    const API_URL =
+      NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
 
-
-    <>
-        <br/>
-        <h1> Program </h1>
-        <img src={barrwood24} alt="barrwood24" width="400" height="600"/>
-
-    </>
-
-);
-
-
-
-}
+    const API_HEADERS =
+        NODE_ENV === 'production' ? process.env.REACT_APP_API_HEADERS: window.API_URL ;
 
 
+    const search = async() => {
+        try{
+            setError('');
+            setResults(null);
+
+            var url = API_URL + "/person/find?firstName=" + firstName + "&lastName=" + lastName ;
+            const response = await axios.get(url,{API_HEADERS});
+            setResults(response.data);
+        }
+        catch (e) {
+            setError(e.message);
+        }
+    }
+
+    const findAll = async() => {
+        try{
+            setError('');
+            setResults(null);
+
+            var url = API_URL + "/person/all";
+            const response = await axios.get(url,{API_HEADERS});
+            setResults(response.data);
+        }
+        catch (e) {
+            setError(e.message);
+        }
+    }
+    const clear = async() => {
+        try{
+            setError('');
+            setResults(null);
+       }
+        catch (e) {
+            setError(e.message);
+        }
+    }
+
+    return (
+        <>
+        {user ?
+        (
+
+            <div id="page-body">
+                <></>
+                <h3>People</h3>
+                {error && <p className="error">{error}</p>}
+
+                <Box component="form" sx={{'& > :not(style)': {m: 1, width: '25ch'},}}
+                     noValidate autoComplete="off">
+                    <TextField id="outlined-controlled" label="First Name" value={firstName} defaultValue={''}
+                               onChange={(event) => {
+                                   setFirstName(event.target.value);
+                               }}/>
+
+                    <TextField id="outlined-controlled" label="Last Name" value={lastName} defaultValue={''}
+                               onChange={(event) => {
+                                   setLastName(event.target.value);
+                               }}/>
+                    <br></br>
+
+                    <Button variant="contained" onClick={search} class="input-button"
+                            style={{width: 100, height: 50}}>Search
+                    </Button>
+
+                    <Button variant="contained" onClick={findAll}
+                            class="input-button" style={{width: 100, height: 50}}>Find All</Button>
+
+                    <Button variant="contained" onClick={clear}
+                            class="input-button" style={{width: 100, height: 50}}>Clear</Button>
+                </Box>
+                {results ? (<PeopleQRResultsPage rows={results.Person}/>) : null}
+
+            </div>
+           )
+           : <LoginPage tab={tab}/>
+           }
+           </>
+    )
+};
 
 export default Barrwood24Page;

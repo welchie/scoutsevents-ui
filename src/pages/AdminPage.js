@@ -112,9 +112,7 @@ const handleFileSelect = (fileItem) => {
 
         <Box component="form" sx={{'& > :not(style)': {m: 2, width: '25ch'},}}
             noValidate autoComplete="off">
-            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={subcamps}>Sub Camps</Button>
-            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={lanyards}>Brass Monkey 24</Button>
-            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={barrwood}>Barrwood 2024</Button>
+            <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={lanyards}>Lanyards</Button>
             <Button variant="contained" class="input-button"  style={{width:175, height:50}} onClick={register}>Register Participant</Button>
 
 
