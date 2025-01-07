@@ -12,7 +12,7 @@ import { useState } from "react";
 import Button from '@mui/material/Button';
 
 
- const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_MODE } = process.env;
+ const { REACT_APP_API_BASE_URL, REACT_APP_API_HEADERS, REACT_APP_API_BASE_LOCAL_URL, NODE_ENV, REACT_APP_MODE, REACT_APP_URL } = process.env;
 
  const API_URL =
      NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL :process.env.REACT_APP_API_BASE_LOCAL_URL ;
@@ -87,7 +87,7 @@ const columns: GridColDef[] = [
  (params) => {
                  return (
                      <div>
-                     <img src={API_URL + "/barcodes/qrcode/?url=" + params.row.url} alt="qrcode" width="60" height="60" />
+                     <img src={API_URL + "/barcodes/qrcode/?url=" + REACT_APP_URL + params.row.url} alt="qrcode" width="60" height="60" />
                      </div>
                  );
              }

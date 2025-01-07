@@ -96,15 +96,14 @@ const SubCampsPage = () =>
                        >
 
                         <MenuItem value={"All"}>All</MenuItem>
-                        <MenuItem value={"Adult"}>Adult</MenuItem>
+                        <MenuItem value={"Young Leader"}>Leader</MenuItem>
                         <MenuItem value={"Blue"}>Blue</MenuItem>
-                        <MenuItem value={"Dark Blue"}>Dark Blue</MenuItem>
                         <MenuItem value={"Green"}>Green</MenuItem>
                         <MenuItem value={"Light Blue"}>Light Blue</MenuItem>
                         <MenuItem value={"Orange"}>Orange</MenuItem>
                         <MenuItem value={"Purple"}>Purple</MenuItem>
                         <MenuItem value={"Red"}>Red</MenuItem>
-                        <MenuItem value={"Young Leaders"}>Young Leaders</MenuItem>
+                        <MenuItem value={"Leader"}>Young Leader</MenuItem>
                        </Select>
                      </FormControl>
 
