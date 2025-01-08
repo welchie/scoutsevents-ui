@@ -47,7 +47,7 @@ const columns: GridColDef[] = [
                  );
              }
   },
-{ field: 'uid2', headerName: 'Name', width:100, editable: false, renderCell:
+{ field: 'uid2', headerName: 'Details', width:125, editable: false, renderCell:
      (params) => {
                     var URL_API = {PERSON_URL}
                     URL_API = PERSON_URL + params.row.uid
@@ -58,6 +58,8 @@ const columns: GridColDef[] = [
                      );
                  }
       },
+  { field: 'firstName', headerName: 'First Name', type: 'text', width: 125, editable: true },
+  { field: 'lastName', headerName: 'Last Name', type: 'text', width: 150, editable: true },
   { field: 'dob', headerName: 'Age', type: 'text', width: 75, editable: true },
   { field: 'subCamp', headerName: 'Sub Camp', type: 'text', width: 110, editable: true },
   { field: 'scoutGroup', headerName: 'Group', width:120, editable: false },

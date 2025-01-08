@@ -92,7 +92,7 @@ const columns: GridColDef[] = [
                  );
              }
   },
-  { field: 'url2', headerName: 'Name', width:100, editable: false, renderCell:
+  { field: 'url2', headerName: 'Details', width:100, editable: false, renderCell:
    (params) => {
                    return (
                        <div>
@@ -101,6 +101,9 @@ const columns: GridColDef[] = [
                    );
                }
     },
+  { field: 'lastUpdated', headerName: 'Last Updated', type: 'text', width: 150, editable: true },
+  { field: 'firstName', headerName: 'First Name', type: 'text', width: 125, editable: true },
+  { field: 'lastName', headerName: 'Last Name', type: 'text', width: 150, editable: true },
   { field: 'dob', headerName: 'Age', type: 'text', width: 80, editable: true },
   { field: 'subCamp', headerName: 'Sub Camp', width:120, editable: false },
   { field: 'scoutGroup', headerName: 'Group', width:150, editable: false },
