@@ -73,11 +73,10 @@ const RegisterPage = () => {
                 subCamp: subCamp
             };
 
-            alert(payload);
             axios.post(url, payload).then((response) => {
-                 console.log(response.status, response.data.token);
-                 alert("Person Registered: " + response.data.token);
+                 alert("Person Registered successfully.");
              });
+
 
         }
         catch (e) {
