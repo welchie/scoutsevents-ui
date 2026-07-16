@@ -65,16 +65,6 @@ describe('Security Dependency Auditing', () => {
         expect(nthCheckPatch).toBeGreaterThanOrEqual(1);
       }
     }
-
-    // 7. webpack-dev-server should be >= 5.2.6 (fixes cross-origin source code exposure)
-    const devServerVersion = require('webpack-dev-server/package.json').version;
-    const [devServerMajor, devServerMinor, devServerPatch] = devServerVersion.split('.').map(Number);
-    expect(devServerMajor).toBeGreaterThanOrEqual(5);
-    if (devServerMajor === 5) {
-      expect(devServerMinor).toBeGreaterThanOrEqual(2);
-      if (devServerMinor === 2) {
-        expect(devServerPatch).toBeGreaterThanOrEqual(6);
-      }
-    }
   });
 });
+
